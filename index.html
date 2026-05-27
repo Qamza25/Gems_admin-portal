@@ -63,14 +63,17 @@
     padding: 48px 44px; width: 100%; max-width: 400px;
     text-align: center; box-shadow: 0 40px 80px rgba(0,0,0,0.5);
   }
-  .login-logo {
-    width: 64px; height: 64px;
-    background: linear-gradient(135deg, var(--teal-mid), var(--teal-light));
-    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 16px;
-    color: white; margin: 0 auto 20px;
+
+  /* ── LOGIN LOGO IMAGE ── */
+  .login-logo-img {
+    height: 56px;
+    width: auto;
+    object-fit: contain;
+    margin: 0 auto 20px;
+    display: block;
+    filter: brightness(0) invert(1); /* white version on dark bg */
   }
+
   .login-box h2 { font-family: 'Rajdhani', sans-serif; font-size: 28px; font-weight: 700; color: #ffffff; margin-bottom: 6px; }
   .login-box p { font-size: 13px; color: rgba(255,255,255,0.5); margin-bottom: 28px; }
   .login-box input {
@@ -92,17 +95,20 @@
     position: fixed; top: 0; left: 0; bottom: 0; z-index: 100;
   }
   .sidebar-logo {
-    padding: 26px 22px 20px;
+    padding: 20px 22px 18px;
     border-bottom: 1px solid rgba(255,255,255,0.08);
+    display: flex; flex-direction: column; align-items: flex-start;
   }
-  .sidebar-logo .hex {
-    width: 40px; height: 40px;
-    background: linear-gradient(135deg, var(--teal-mid), var(--teal-light));
-    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 11px;
-    color: white; margin-bottom: 12px;
+
+  /* ── SIDEBAR LOGO IMAGE ── */
+  .sidebar-logo-img {
+    height: 36px;
+    width: auto;
+    object-fit: contain;
+    margin-bottom: 10px;
+    filter: brightness(0) invert(1); /* white on dark sidebar */
   }
+
   .sidebar-logo h2 { font-family: 'Rajdhani', sans-serif; font-size: 15px; font-weight: 700; letter-spacing: 1.5px; color: white; }
   .sidebar-logo p { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 2px; }
 
@@ -304,6 +310,9 @@
 
   .loading-row td { text-align: center; padding: 28px; color: var(--muted); }
 
+  .tab-content { display:none; }
+  .tab-content.active { display:block; }
+
   @media (max-width: 900px) { .charts-grid { grid-template-columns: 1fr; } }
   @media (max-width: 680px) { .sidebar { display: none; } .main { margin-left: 0; } .content { padding: 18px 16px; } .stats-grid { grid-template-columns: 1fr 1fr; } }
 </style>
@@ -313,7 +322,8 @@
 <!-- LOGIN -->
 <div class="login-overlay" id="login-overlay">
   <div class="login-box">
-    <div class="login-logo">ADM</div>
+    <!-- ── LOGO IMAGE (login screen) ── -->
+    <img src="imgs/GEMS 20 Years Logo Black.png" alt="GEMS Logo" class="login-logo-img">
     <h2>Admin Portal</h2>
     <p>GEMS Quiz Results Dashboard — Authorized Access Only</p>
     <input type="text" id="login-user" placeholder="Username" autocomplete="username">
@@ -352,7 +362,8 @@
   <!-- SIDEBAR -->
   <div class="sidebar">
     <div class="sidebar-logo">
-      <div class="hex">GEM</div>
+      <!-- ── LOGO IMAGE (sidebar) ── -->
+      <img src="imgs/GEMS 20 Years Logo Black.png" alt="GEMS Logo" class="sidebar-logo-img">
       <h2>GEMS ADMIN</h2>
       <p>Knowledge Hub Portal</p>
     </div>
@@ -394,22 +405,10 @@
         </div>
 
         <div class="charts-grid">
-          <div class="chart-card">
-            <h3>Pass vs Fail Rate</h3>
-            <canvas id="chart-donut"></canvas>
-          </div>
-          <div class="chart-card">
-            <h3>Submissions by Province</h3>
-            <canvas id="chart-province"></canvas>
-          </div>
-          <div class="chart-card">
-            <h3>Score Distribution</h3>
-            <canvas id="chart-scores"></canvas>
-          </div>
-          <div class="chart-card">
-            <h3>Attempts per User</h3>
-            <canvas id="chart-attempts"></canvas>
-          </div>
+          <div class="chart-card"><h3>Pass vs Fail Rate</h3><canvas id="chart-donut"></canvas></div>
+          <div class="chart-card"><h3>Submissions by Province</h3><canvas id="chart-province"></canvas></div>
+          <div class="chart-card"><h3>Score Distribution</h3><canvas id="chart-scores"></canvas></div>
+          <div class="chart-card"><h3>Attempts per User</h3><canvas id="chart-attempts"></canvas></div>
         </div>
 
         <div class="table-wrap">
@@ -498,7 +497,6 @@ const PROVINCES = ['Eastern Cape','Free State','Gauteng','KwaZulu-Natal','Limpop
 const TEAL = '#0f5c52', NAVY = '#14304d', GOLD = '#f5a623';
 const TEAL_LIGHT = '#1d9e8c', SUCCESS = '#00c853', DANGER = '#ef5350';
 
-// ── LOGIN ──
 function doLogin() {
   const u = document.getElementById('login-user').value;
   const p = document.getElementById('login-pass').value;
@@ -516,7 +514,6 @@ function doLogout() {
   document.getElementById('app').style.display = 'none';
 }
 
-// ── TABS ──
 function switchTab(name) {
   document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
@@ -529,7 +526,6 @@ function switchTab(name) {
   if (name === 'provinces') renderProvinceCharts();
 }
 
-// ── LOAD DATA ──
 async function loadData() {
   try {
     const { data, error } = await db.from('quiz_results').select('*').order('taken_at', { ascending: false });
@@ -543,7 +539,6 @@ async function loadData() {
   } catch(e) { showToast('Connection error', 'error'); }
 }
 
-// ── CHARTS HELPER ──
 function destroyChart(id) { if (charts[id]) { charts[id].destroy(); delete charts[id]; } }
 function mkChart(id, type, data, options={}) {
   destroyChart(id);
@@ -552,7 +547,6 @@ function mkChart(id, type, data, options={}) {
   charts[id] = new Chart(ctx, { type, data, options: { responsive:true, maintainAspectRatio:true, plugins:{ legend:{ labels:{ color: NAVY, font:{ family:'Rajdhani', size:12 } } } }, ...options } });
 }
 
-// ── DASHBOARD ──
 function renderDashboard() {
   const total  = allData.length;
   const passed = allData.filter(r => r.passed).length;
@@ -619,7 +613,6 @@ function renderDashboard() {
     : '<tr><td colspan="7" style="text-align:center;padding:28px;color:var(--muted)">No submissions yet</td></tr>';
 }
 
-// ── PROVINCE CHARTS ──
 function renderProvinceCharts() {
   const provData = {};
   PROVINCES.forEach(p => provData[p] = { total:0, passed:0, scores:[] });
@@ -634,41 +627,34 @@ function renderProvinceCharts() {
   const shortNames = active.map(p => p.replace('KwaZulu-Natal','KZN').replace('Northern Cape','N. Cape').replace('Western Cape','W. Cape').replace('Eastern Cape','E. Cape').replace('North West','N. West'));
   const passRates = active.map(p => provData[p].total ? Math.round((provData[p].passed/provData[p].total)*100) : 0);
   const avgScores = active.map(p => provData[p].scores.length ? Math.round(provData[p].scores.reduce((s,x)=>s+x,0)/provData[p].scores.length) : 0);
-
   const axisOpts = { x:{ ticks:{color:NAVY,font:{family:'Rajdhani',size:11}}, grid:{display:false} }, y:{ ticks:{color:NAVY,font:{family:'Rajdhani',size:11},callback:v=>v+'%'}, grid:{color:'rgba(20,48,77,0.07)'}, min:0, max:100 } };
-
   mkChart('chart-prov-pass','bar',{
     labels: shortNames,
     datasets:[{ label:'Pass Rate', data: passRates, backgroundColor: passRates.map(r => r>=70?SUCCESS+'cc':DANGER+'cc'), borderRadius:6 }]
   },{ plugins:{legend:{display:false}}, scales: axisOpts });
-
   mkChart('chart-prov-avg','bar',{
     labels: shortNames,
     datasets:[{ label:'Avg Score', data: avgScores, backgroundColor: TEAL+'cc', borderRadius:6 }]
   },{ plugins:{legend:{display:false}}, scales: axisOpts });
 }
 
-// ── ALL RESULTS ──
 function renderAllTable() { filterTable(); }
 
 function filterTable() {
   const search = document.getElementById('search-input').value.toLowerCase();
   const prov   = document.getElementById('filter-province').value;
   const status = document.getElementById('filter-status').value;
-
   let filtered = allData.filter(r => {
     const ms = !search || r.name?.toLowerCase().includes(search) || r.email?.toLowerCase().includes(search);
     const mp = !prov   || r.province === prov;
     const mu = !status || (status==='pass' ? r.passed : !r.passed);
     return ms && mp && mu;
   });
-
   filtered.sort((a,b) => {
     let va = a[sortField], vb = b[sortField];
     if (typeof va === 'string') { va = va.toLowerCase(); vb = vb.toLowerCase(); }
     return va < vb ? -sortDir : va > vb ? sortDir : 0;
   });
-
   document.getElementById('all-count').textContent = filtered.length + ' record(s)';
   document.getElementById('all-tbody').innerHTML = filtered.length
     ? filtered.map(r => buildRow(r)).join('')
@@ -698,7 +684,6 @@ function buildRow(r) {
   </tr>`;
 }
 
-// ── PROVINCES TABLE ──
 function renderProvinces() {
   const provData = {};
   PROVINCES.forEach(p => provData[p] = { total:0, passed:0, scores:[] });
@@ -709,7 +694,6 @@ function renderProvinces() {
       provData[r.province].scores.push(r.score);
     }
   });
-
   const rows = PROVINCES.filter(p => provData[p].total > 0).map(p => {
     const d = provData[p];
     const rate = d.total ? Math.round((d.passed/d.total)*100) : 0;
@@ -728,13 +712,11 @@ function renderProvinces() {
       <td style="font-family:'Rajdhani',sans-serif;font-weight:700">${avg}%</td>
     </tr>`;
   });
-
   document.getElementById('province-tbody').innerHTML = rows.length
     ? rows.join('')
     : `<tr><td colspan="6" style="text-align:center;padding:36px;color:var(--muted)">No data available</td></tr>`;
 }
 
-// ── USER DETAIL MODAL ──
 function openUserModal(emailEnc) {
   const email = decodeURIComponent(emailEnc);
   const userRows = allData.filter(r => r.email === email).sort((a,b) => a.attempt_number - b.attempt_number);
@@ -743,7 +725,6 @@ function openUserModal(emailEnc) {
   const best   = Math.max(...userRows.map(r => r.score));
   const hasPassed = userRows.some(r => r.passed);
   const initials = (latest.name||'?').split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
-
   document.getElementById('modal-avatar').textContent = initials;
   document.getElementById('modal-name').textContent = latest.name || '—';
   document.getElementById('modal-email').textContent = email;
@@ -753,21 +734,14 @@ function openUserModal(emailEnc) {
   document.getElementById('modal-status-badge').innerHTML = hasPassed
     ? '<span style="color:var(--success)">Passed</span>'
     : '<span style="color:var(--danger)">Not Passed</span>';
-
   document.getElementById('modal-attempts-list').innerHTML = userRows.map(r => {
     const date = r.taken_at ? new Date(r.taken_at).toLocaleDateString('en-ZA',{day:'2-digit',month:'short',year:'numeric'}) : '—';
     return `<div class="attempt-row">
-      <div>
-        <div class="att-num">Attempt ${r.attempt_number}</div>
-        <div class="att-date">${date}</div>
-      </div>
-      <div>
-        <span class="badge ${r.passed?'badge-pass':'badge-fail'}">${r.passed?'✓ Passed':'✗ Failed'}</span>
-      </div>
+      <div><div class="att-num">Attempt ${r.attempt_number}</div><div class="att-date">${date}</div></div>
+      <div><span class="badge ${r.passed?'badge-pass':'badge-fail'}">${r.passed?'✓ Passed':'✗ Failed'}</span></div>
       <div class="att-score" style="color:${r.passed?'var(--success)':'var(--danger)'}">${r.score}%</div>
     </div>`;
   }).join('');
-
   const lastWithAnswers = [...userRows].reverse().find(r => r.answers);
   if (lastWithAnswers && lastWithAnswers.answers) {
     const qAnswers = JSON.parse(lastWithAnswers.answers);
@@ -789,7 +763,6 @@ function openUserModal(emailEnc) {
   } else {
     document.getElementById('modal-review-section').innerHTML = '';
   }
-
   document.getElementById('user-modal').classList.add('open');
 }
 
@@ -824,7 +797,6 @@ function getQuestions() {
   ];
 }
 
-// ── CSV EXPORT ──
 function exportCSV() {
   if (!allData.length) { showToast('No data to export', 'error'); return; }
   const headers = ['Name','Email','Province','Score','Passed','Attempt','Date'];
@@ -842,54 +814,38 @@ function exportCSV() {
   showToast('✅ CSV exported', 'success');
 }
 
-// ── PDF EXPORT ──
 function exportPDF() {
   if (!allData.length) { showToast('No data to export', 'error'); return; }
   showToast('📄 Generating PDF…', 'success');
 
   const { jsPDF } = window.jspdf;
-  // Landscape A4
   const doc = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
   const PW = 297, PH = 210;
   const dateStr = new Date().toLocaleDateString('en-ZA', { day: '2-digit', month: 'long', year: 'numeric' });
 
-  // ── Colours ──
-  const C_TEAL     = [15, 92, 82];
-  const C_NAVY     = [20, 48, 77];
-  const C_GOLD     = [245, 166, 35];
-  const C_WHITE    = [255, 255, 255];
-  const C_LTEAL    = [184, 223, 217];
-  const C_SUCCESS  = [0, 160, 67];
-  const C_DANGER   = [220, 53, 50];
-  const C_MUTED    = [90, 158, 150];
-  const C_BGLIGHT  = [214, 238, 234];
+  const C_TEAL    = [15, 92, 82];
+  const C_NAVY    = [20, 48, 77];
+  const C_GOLD    = [245, 166, 35];
+  const C_WHITE   = [255, 255, 255];
+  const C_LTEAL   = [184, 223, 217];
+  const C_SUCCESS = [0, 160, 67];
+  const C_DANGER  = [220, 53, 50];
+  const C_MUTED   = [90, 158, 150];
+  const C_BGLIGHT = [214, 238, 234];
 
-  // ──────────────────────────────────────────
-  //  PAGE 1 – EXECUTIVE SUMMARY
-  // ──────────────────────────────────────────
-  // Header bar
+  // PAGE 1
   doc.setFillColor(...C_TEAL);
   doc.rect(0, 0, PW, 30, 'F');
 
-  // ── Hexagon logo (matches portal CSS clip-path hexagon) ──
-  // Centre: (16, 15), radius: 9mm
   const hx = 16, hy = 15, hr = 9;
   const hexPts = [];
-  // flat-top hexagon: angles 30,90,150,210,270,330
   for (let i = 0; i < 6; i++) {
     const ang = (Math.PI / 180) * (30 + 60 * i);
     hexPts.push([hx + hr * Math.cos(ang), hy + hr * Math.sin(ang)]);
   }
-  doc.setFillColor(29, 158, 140); // teal-light gradient approximation
-  doc.setDrawColor(15, 92, 82);
+  doc.setFillColor(29, 158, 140);
   doc.setLineWidth(0);
-  // Draw filled hexagon via lines
-  doc.lines(
-    hexPts.slice(1).map((p, i) => [p[0] - hexPts[i][0], p[1] - hexPts[i][1]]),
-    hexPts[0][0], hexPts[0][1],
-    [1, 1], 'F', true
-  );
-  // Inner darker hexagon for depth
+  doc.lines(hexPts.slice(1).map((p, i) => [p[0] - hexPts[i][0], p[1] - hexPts[i][1]]), hexPts[0][0], hexPts[0][1], [1, 1], 'F', true);
   const hr2 = 5.5;
   const hexPts2 = [];
   for (let i = 0; i < 6; i++) {
@@ -897,18 +853,12 @@ function exportPDF() {
     hexPts2.push([hx + hr2 * Math.cos(ang), hy + hr2 * Math.sin(ang)]);
   }
   doc.setFillColor(15, 92, 82);
-  doc.lines(
-    hexPts2.slice(1).map((p, i) => [p[0] - hexPts2[i][0], p[1] - hexPts2[i][1]]),
-    hexPts2[0][0], hexPts2[0][1],
-    [1, 1], 'F', true
-  );
-  // "GEM" text inside hexagon
+  doc.lines(hexPts2.slice(1).map((p, i) => [p[0] - hexPts2[i][0], p[1] - hexPts2[i][1]]), hexPts2[0][0], hexPts2[0][1], [1, 1], 'F', true);
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(6.5);
   doc.setTextColor(...C_WHITE);
   doc.text('GEM', hx, hy + 2.2, { align: 'center' });
 
-  // Title
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(19);
   doc.setTextColor(...C_WHITE);
@@ -916,15 +866,11 @@ function exportPDF() {
   doc.setFontSize(11);
   doc.setFont('helvetica', 'normal');
   doc.text('Episode 1 Assessment \u2014 Executive Summary', 31, 22);
-
-  // Date right-aligned
   doc.setFontSize(10);
-  doc.setFont('helvetica', 'normal');
   doc.setTextColor(...C_WHITE);
   doc.text('Generated: ' + dateStr, PW - 10, 13, { align: 'right' });
   doc.text('CONFIDENTIAL - Admin Use Only', PW - 10, 22, { align: 'right' });
 
-  // ── KPI Cards row ──
   const total   = allData.length;
   const passed  = allData.filter(r => r.passed).length;
   const failed  = total - passed;
@@ -943,28 +889,22 @@ function exportPDF() {
 
   const cardW = 44, cardH = 26, cardY = 36, cardGap = 4;
   const startX = (PW - (kpis.length * cardW + (kpis.length-1) * cardGap)) / 2;
-
   kpis.forEach((k, i) => {
     const cx = startX + i * (cardW + cardGap);
-    // Card background
     doc.setFillColor(...C_BGLIGHT);
     doc.roundedRect(cx, cardY, cardW, cardH, 3, 3, 'F');
-    // Top accent bar
     doc.setFillColor(...k.color);
     doc.roundedRect(cx, cardY, cardW, 2, 1, 1, 'F');
-    // Value
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(18);
     doc.setTextColor(...k.color);
     doc.text(k.value, cx + cardW/2, cardY + 14, { align: 'center' });
-    // Label
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(8);
     doc.setTextColor(...C_MUTED);
     doc.text(k.label, cx + cardW/2, cardY + 22, { align: 'center' });
   });
 
-  // ── Province Summary Table ──
   const provData = {};
   PROVINCES.forEach(p => provData[p] = { total:0, passed:0, scores:[] });
   allData.forEach(r => {
@@ -976,7 +916,6 @@ function exportPDF() {
   });
   const activeProvs = PROVINCES.filter(p => provData[p].total > 0);
 
-  // Section heading
   doc.setFillColor(...C_NAVY);
   doc.roundedRect(10, 66, PW - 20, 8, 2, 2, 'F');
   doc.setFont('helvetica', 'bold');
@@ -984,7 +923,6 @@ function exportPDF() {
   doc.setTextColor(...C_WHITE);
   doc.text('PROVINCE BREAKDOWN', 15, 72);
 
-  // Table
   const provTableData = activeProvs.map(p => {
     const d = provData[p];
     const rate = d.total ? Math.round((d.passed/d.total)*100) : 0;
@@ -998,27 +936,11 @@ function exportPDF() {
     body: provTableData,
     margin: { left: 10, right: 10 },
     tableWidth: PW - 20,
-    styles: {
-      font: 'helvetica',
-      fontSize: 11,
-      cellPadding: 4,
-      textColor: C_NAVY,
-      lineColor: [200, 230, 226],
-      lineWidth: 0.3,
-    },
-    headStyles: {
-      fillColor: C_TEAL,
-      textColor: C_WHITE,
-      fontStyle: 'bold',
-      fontSize: 11,
-    },
+    styles: { font: 'helvetica', fontSize: 11, cellPadding: 4, textColor: C_NAVY, lineColor: [200, 230, 226], lineWidth: 0.3 },
+    headStyles: { fillColor: C_TEAL, textColor: C_WHITE, fontStyle: 'bold', fontSize: 11 },
     alternateRowStyles: { fillColor: C_BGLIGHT },
     bodyStyles: { fillColor: C_WHITE },
-    columnStyles: {
-      0: { fontStyle: 'bold' },
-      4: { textColor: C_SUCCESS, fontStyle: 'bold' },
-      5: { textColor: C_TEAL,    fontStyle: 'bold' },
-    },
+    columnStyles: { 0: { fontStyle: 'bold' }, 4: { textColor: C_SUCCESS, fontStyle: 'bold' }, 5: { textColor: C_TEAL, fontStyle: 'bold' } },
     didParseCell: (data) => {
       if (data.section === 'body' && data.column.index === 3) {
         const val = parseInt(data.cell.raw);
@@ -1027,22 +949,15 @@ function exportPDF() {
     }
   });
 
-  // Footer page 1
-  const p1Footer = doc.lastAutoTable.finalY + 4;
   doc.setFontSize(8);
   doc.setTextColor(...C_MUTED);
   doc.text('GEMS - Concept Clarification Series  |  Episode 1 Assessment  |  Page 1 of 2', PW/2, PH - 6, { align: 'center' });
 
-  // ──────────────────────────────────────────
-  //  PAGE 2 – FULL SUBMISSIONS TABLE
-  // ──────────────────────────────────────────
+  // PAGE 2
   doc.addPage();
-
-  // Header bar
   doc.setFillColor(...C_TEAL);
   doc.rect(0, 0, PW, 26, 'F');
 
-  // Hexagon logo page 2
   const hx2 = 13, hy2 = 13, hr2b = 7;
   const hexPts3 = [];
   for (let i = 0; i < 6; i++) {
@@ -1073,7 +988,6 @@ function exportPDF() {
   doc.text('Episode 1 Assessment', 25, 21);
   doc.text(dateStr, PW - 10, 13, { align: 'right' });
 
-  // Section heading
   doc.setFillColor(...C_NAVY);
   doc.roundedRect(10, 30, PW - 20, 8, 2, 2, 'F');
   doc.setFont('helvetica', 'bold');
@@ -1081,7 +995,6 @@ function exportPDF() {
   doc.setTextColor(...C_WHITE);
   doc.text('INDIVIDUAL RESULTS  -  ' + total + ' TOTAL SUBMISSIONS', 15, 36);
 
-  // Build sorted data for table
   const sorted = [...allData].sort((a,b) => {
     const pa = a.province||''; const pb = b.province||'';
     return pa.localeCompare(pb) || (a.name||'').localeCompare(b.name||'');
@@ -1089,15 +1002,7 @@ function exportPDF() {
 
   const tableRows = sorted.map(r => {
     const d = r.taken_at ? new Date(r.taken_at).toLocaleDateString('en-ZA', {day:'2-digit',month:'short',year:'numeric'}) : '-';
-    return [
-      r.name || '-',
-      r.email || '-',
-      r.province || '-',
-      (r.score || 0) + '%',
-      r.passed ? 'PASSED' : 'FAILED',
-      String(r.attempt_number || 1),
-      d
-    ];
+    return [ r.name||'-', r.email||'-', r.province||'-', (r.score||0)+'%', r.passed?'PASSED':'FAILED', String(r.attempt_number||1), d ];
   });
 
   doc.autoTable({
@@ -1106,21 +1011,8 @@ function exportPDF() {
     body: tableRows,
     margin: { left: 10, right: 10 },
     tableWidth: PW - 20,
-    styles: {
-      font: 'helvetica',
-      fontSize: 10,
-      cellPadding: 3.5,
-      textColor: C_NAVY,
-      lineColor: [200, 230, 226],
-      lineWidth: 0.3,
-      overflow: 'ellipsize',
-    },
-    headStyles: {
-      fillColor: C_NAVY,
-      textColor: C_WHITE,
-      fontStyle: 'bold',
-      fontSize: 10,
-    },
+    styles: { font: 'helvetica', fontSize: 10, cellPadding: 3.5, textColor: C_NAVY, lineColor: [200, 230, 226], lineWidth: 0.3, overflow: 'ellipsize' },
+    headStyles: { fillColor: C_NAVY, textColor: C_WHITE, fontStyle: 'bold', fontSize: 10 },
     alternateRowStyles: { fillColor: C_BGLIGHT },
     bodyStyles: { fillColor: C_WHITE },
     columnStyles: {
@@ -1143,18 +1035,14 @@ function exportPDF() {
     }
   });
 
-  // Footer page 2
   doc.setFontSize(8);
   doc.setTextColor(...C_MUTED);
   doc.text('GEMS - Concept Clarification Series  |  Episode 1 Assessment  |  Page 2 of 2', PW/2, PH - 6, { align: 'center' });
 
-  // Save
-  const filename = `GEMS_Summary_${new Date().toISOString().slice(0,10)}.pdf`;
-  doc.save(filename);
+  doc.save(`GEMS_Summary_${new Date().toISOString().slice(0,10)}.pdf`);
   showToast('✅ PDF downloaded', 'success');
 }
 
-// ── TOAST ──
 function showToast(msg, type='info') {
   const t = document.getElementById('toast');
   t.textContent = msg; t.className = 'toast show ' + type;
@@ -1163,10 +1051,5 @@ function showToast(msg, type='info') {
 
 window._quizQuestions = getQuestions();
 </script>
-
-<style>
-.tab-content { display:none; }
-.tab-content.active { display:block; }
-</style>
 </body>
 </html>
