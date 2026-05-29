@@ -32,50 +32,28 @@
     --sidebar-bg:  #0e2238;
     --header-bg:   #0f5c52;
   }
-
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    background: var(--bg);
-    color: var(--navy);
-    font-family: 'Source Sans 3', sans-serif;
-    min-height: 100vh;
-  }
-
-  /* ── LOGIN ── */
+  body { background: var(--bg); color: var(--navy); font-family: 'Source Sans 3', sans-serif; min-height: 100vh; }
   .login-overlay {
     position: fixed; inset: 0;
     background: linear-gradient(135deg, #0a3d35 0%, #0e2238 100%);
     z-index: 999; display: flex; align-items: center; justify-content: center;
   }
   .login-overlay::before {
-    content: '';
-    position: absolute; inset: 0;
+    content: ''; position: absolute; inset: 0;
     background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
                       linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
     background-size: 40px 40px;
   }
   .login-box {
-    position: relative;
-    background: #0f4a42;
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 20px;
+    position: relative; background: #0f4a42;
+    border: 1px solid rgba(255,255,255,0.1); border-radius: 20px;
     padding: 48px 44px; width: 100%; max-width: 400px;
     text-align: center; box-shadow: 0 40px 80px rgba(0,0,0,0.5);
   }
-
-  /* ── LOGIN LOGO IMAGE ── */
-  .login-logo-img {
-    height: 56px;
-    width: auto;
-    object-fit: contain;
-    margin: 0 auto 20px;
-    display: block;
-    filter: brightness(0) invert(1); /* white version on dark bg */
-  }
-
-  .login-box h2 { font-family: 'Rajdhani', sans-serif; font-size: 28px; font-weight: 700; color: #ffffff; margin-bottom: 6px; }
-  .login-box p { font-size: 13px; color: rgba(255,255,255,0.5); margin-bottom: 28px; }
+  .login-logo-img { height: 56px; width: auto; object-fit: contain; margin: 0 auto 20px; display: block; filter: brightness(0) invert(1); }
+  .login-box h2 { font-family: 'Rajdhani', sans-serif; font-size: 28px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+  .login-box p  { font-size: 13px; color: rgba(255,255,255,0.5); margin-bottom: 28px; }
   .login-box input {
     width: 100%; background: rgba(0,0,0,0.25); border: 1.5px solid rgba(255,255,255,0.15);
     border-radius: 9px; padding: 13px 16px; color: #fff;
@@ -85,113 +63,80 @@
   .login-box input::placeholder { color: rgba(255,255,255,0.35); }
   .login-box input:focus { border-color: var(--teal-light); }
   .login-err { font-size: 13px; color: #ff8a80; margin-bottom: 10px; display: none; }
-
-  /* ── LAYOUT ── */
   .page { display: flex; min-height: 100vh; }
-
   .sidebar {
     width: 240px; background: var(--sidebar-bg); color: white;
     display: flex; flex-direction: column;
     position: fixed; top: 0; left: 0; bottom: 0; z-index: 100;
   }
   .sidebar-logo {
-    padding: 20px 22px 18px;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding: 20px 22px 18px; border-bottom: 1px solid rgba(255,255,255,0.08);
     display: flex; flex-direction: column; align-items: flex-start;
   }
-
-  /* ── SIDEBAR LOGO IMAGE ── */
-  .sidebar-logo-img {
-    height: 36px;
-    width: auto;
-    object-fit: contain;
-    margin-bottom: 10px;
-    filter: brightness(0) invert(1); /* white on dark sidebar */
-  }
-
+  .sidebar-logo-img { height: 36px; width: auto; object-fit: contain; margin-bottom: 10px; filter: brightness(0) invert(1); }
   .sidebar-logo h2 { font-family: 'Rajdhani', sans-serif; font-size: 15px; font-weight: 700; letter-spacing: 1.5px; color: white; }
-  .sidebar-logo p { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 2px; }
-
+  .sidebar-logo p  { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 2px; }
   .sidebar-nav { padding: 18px 10px; flex: 1; }
   .nav-label { font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.3); padding: 4px 12px 10px; }
   .nav-item {
-    display: flex; align-items: center; gap: 11px;
-    padding: 10px 12px; border-radius: 8px; cursor: pointer;
+    display: flex; align-items: center; gap: 11px; padding: 10px 12px; border-radius: 8px; cursor: pointer;
     color: rgba(255,255,255,0.55); font-size: 14px; transition: all 0.18s; margin-bottom: 2px;
   }
-  .nav-item:hover { background: rgba(255,255,255,0.07); color: white; }
+  .nav-item:hover  { background: rgba(255,255,255,0.07); color: white; }
   .nav-item.active { background: rgba(15,92,82,0.5); color: var(--teal-light); }
-  .nav-item .icon { font-size: 15px; width: 20px; text-align: center; }
-
+  .nav-item .icon  { font-size: 15px; width: 20px; text-align: center; }
   .sidebar-footer { padding: 18px 22px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 11px; color: rgba(255,255,255,0.35); }
   .dot-live { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--success); margin-right: 5px; box-shadow: 0 0 6px var(--success); }
-
-  .main { margin-left: 240px; flex: 1; display: flex; flex-direction: column; }
-
-  .topbar {
-    background: var(--header-bg); color: white;
-    padding: 16px 32px; display: flex; align-items: center;
-    justify-content: space-between; position: sticky; top: 0; z-index: 50;
-    box-shadow: 0 2px 16px rgba(0,0,0,0.2); gap: 12px; flex-wrap: wrap;
+  .main    { margin-left: 240px; flex: 1; display: flex; flex-direction: column; }
+  .topbar  {
+    background: var(--header-bg); color: white; padding: 16px 32px;
+    display: flex; align-items: center; justify-content: space-between;
+    position: sticky; top: 0; z-index: 50; box-shadow: 0 2px 16px rgba(0,0,0,0.2); gap: 12px; flex-wrap: wrap;
   }
-  .topbar-title { font-family: 'Rajdhani', sans-serif; font-size: 20px; font-weight: 700; color: white; }
+  .topbar-title   { font-family: 'Rajdhani', sans-serif; font-size: 20px; font-weight: 700; color: white; }
   .topbar-actions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
-  .refresh-time { font-size: 12px; color: rgba(255,255,255,0.6); }
-
+  .refresh-time   { font-size: 12px; color: rgba(255,255,255,0.6); }
   .content { padding: 28px 32px; flex: 1; }
-
-  /* ── BUTTONS ── */
   .btn {
     display: inline-flex; align-items: center; gap: 7px;
     font-family: 'Rajdhani', sans-serif; font-size: 13px; font-weight: 700;
     letter-spacing: 0.8px; text-transform: uppercase; border: none;
     border-radius: 8px; padding: 9px 18px; cursor: pointer; transition: all 0.18s;
   }
-  .btn-primary { background: var(--navy); color: white; }
-  .btn-primary:hover { background: var(--navy-mid); transform: translateY(-1px); }
-  .btn-teal { background: var(--teal-mid); color: white; }
-  .btn-teal:hover { background: var(--teal-light); }
+  .btn-teal  { background: var(--teal-mid); color: white; }
+  .btn-teal:hover  { background: var(--teal-light); }
   .btn-ghost { background: transparent; border: 1.5px solid rgba(255,255,255,0.35); color: white; }
   .btn-ghost:hover { border-color: white; }
   .btn-white { background: rgba(255,255,255,0.15); color: white; border: 1.5px solid rgba(255,255,255,0.3); }
   .btn-white:hover { background: rgba(255,255,255,0.25); }
-  .btn-pdf { background: #c0392b; color: white; }
-  .btn-pdf:hover { background: #e74c3c; transform: translateY(-1px); }
-
-  /* ── STAT CARDS ── */
+  .btn-pdf   { background: #c0392b; color: white; }
+  .btn-pdf:hover   { background: #e74c3c; transform: translateY(-1px); }
   .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap: 16px; margin-bottom: 24px; }
   .stat-card {
-    background: var(--card); border-radius: 14px;
-    padding: 22px 20px; position: relative; overflow: hidden;
+    background: var(--card); border-radius: 14px; padding: 22px 20px;
+    position: relative; overflow: hidden;
     box-shadow: 0 2px 16px rgba(0,0,0,0.12); border: 1px solid rgba(255,255,255,0.4);
   }
   .stat-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
-  .stat-card.c-teal::before { background: linear-gradient(90deg, var(--teal-dark), var(--teal-light)); }
+  .stat-card.c-teal::before  { background: linear-gradient(90deg, var(--teal-dark), var(--teal-light)); }
   .stat-card.c-green::before { background: linear-gradient(90deg, #00897b, var(--success)); }
-  .stat-card.c-red::before { background: linear-gradient(90deg, #c62828, var(--danger)); }
-  .stat-card.c-gold::before { background: linear-gradient(90deg, #e65100, var(--gold)); }
-  .stat-card.c-navy::before { background: linear-gradient(90deg, var(--navy-dark), var(--navy-mid)); }
-
-  .stat-icon { font-size: 26px; margin-bottom: 10px; }
-  .stat-num { font-family: 'Rajdhani', sans-serif; font-size: 36px; font-weight: 700; color: var(--navy); line-height: 1; margin-bottom: 3px; }
+  .stat-card.c-red::before   { background: linear-gradient(90deg, #c62828, var(--danger)); }
+  .stat-card.c-gold::before  { background: linear-gradient(90deg, #e65100, var(--gold)); }
+  .stat-card.c-navy::before  { background: linear-gradient(90deg, var(--navy-dark), var(--navy-mid)); }
+  .stat-icon  { font-size: 26px; margin-bottom: 10px; }
+  .stat-num   { font-family: 'Rajdhani', sans-serif; font-size: 36px; font-weight: 700; color: var(--navy); line-height: 1; margin-bottom: 3px; }
   .stat-label { font-size: 12px; color: var(--muted); }
-
-  /* ── CHART GRID ── */
   .charts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 24px; }
   .chart-card {
-    background: var(--card); border-radius: 14px;
-    padding: 22px; box-shadow: 0 2px 16px rgba(0,0,0,0.1);
-    border: 1px solid rgba(255,255,255,0.4);
+    background: var(--card); border-radius: 14px; padding: 22px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.1); border: 1px solid rgba(255,255,255,0.4);
   }
-  .chart-card h3 { font-family: 'Rajdhani', sans-serif; font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 18px; }
-  .chart-card canvas { max-height: 220px; }
-
-  /* ── TABLE ── */
+  .chart-card h3 { font-family: 'Rajdhani', sans-serif; font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 14px; }
+  .chart-card canvas { max-height: 240px; }
   .table-wrap { background: var(--card); border-radius: 14px; overflow: hidden; box-shadow: 0 2px 16px rgba(0,0,0,0.1); border: 1px solid rgba(255,255,255,0.4); }
   .table-header { padding: 18px 22px; border-bottom: 1px solid rgba(20,48,77,0.1); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
   .table-header h3 { font-family: 'Rajdhani', sans-serif; font-size: 16px; font-weight: 700; color: var(--navy); }
   .table-count { font-size: 12px; color: var(--muted); }
-
   table { width: 100%; border-collapse: collapse; }
   thead th {
     padding: 11px 18px; text-align: left;
@@ -205,27 +150,24 @@
   tbody tr:hover { background: rgba(15,92,82,0.08); }
   tbody tr:last-child { border-bottom: none; }
   td { padding: 13px 18px; font-size: 13px; vertical-align: middle; white-space: nowrap; }
-  .td-name { font-weight: 600; color: var(--navy); }
+  .td-name  { font-weight: 600; color: var(--navy); }
   .td-email { color: var(--muted); font-size: 12px; }
-
   .badge { display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px; border-radius: 20px; font-family: 'Rajdhani', sans-serif; font-size: 11px; font-weight: 700; }
   .badge-pass { background: rgba(0,200,83,0.12); color: #00a843; border: 1px solid rgba(0,200,83,0.25); }
   .badge-fail { background: rgba(239,83,80,0.12); color: var(--danger); border: 1px solid rgba(239,83,80,0.25); }
-
   .score-bar-wrap { display: flex; align-items: center; gap: 9px; min-width: 130px; }
-  .score-bar { flex: 1; height: 5px; background: rgba(20,48,77,0.1); border-radius: 4px; overflow: hidden; }
+  .score-bar      { flex: 1; height: 5px; background: rgba(20,48,77,0.1); border-radius: 4px; overflow: hidden; }
   .score-bar-fill { height: 100%; border-radius: 4px; }
   .score-bar-fill.pass { background: linear-gradient(90deg, var(--teal-dark), var(--success)); }
   .score-bar-fill.fail { background: linear-gradient(90deg, #c62828, var(--danger)); }
   .score-val { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 13px; min-width: 34px; }
-
-  /* ── CONTROLS ── */
   .controls-bar { display: flex; gap: 10px; margin-bottom: 18px; flex-wrap: wrap; align-items: center; }
   .search-wrap { position: relative; flex: 1; min-width: 180px; }
   .search-wrap input {
     width: 100%; background: var(--card); border: 1.5px solid rgba(20,48,77,0.15);
     border-radius: 8px; padding: 9px 15px 9px 38px;
-    color: var(--navy); font-family: 'Source Sans 3', sans-serif; font-size: 13px; outline: none; transition: border-color 0.2s;
+    color: var(--navy); font-family: 'Source Sans 3', sans-serif; font-size: 13px;
+    outline: none; transition: border-color 0.2s;
   }
   .search-wrap input:focus { border-color: var(--teal); }
   .search-wrap::before { content: '🔍'; position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 13px; pointer-events: none; }
@@ -234,8 +176,14 @@
     padding: 9px 12px; color: var(--navy); font-family: 'Source Sans 3', sans-serif; font-size: 13px; outline: none; cursor: pointer;
   }
   select.filter-sel:focus { border-color: var(--teal); }
-
-  /* ── USER DETAIL MODAL ── */
+  .view-all-link {
+    font-family: 'Rajdhani', sans-serif; font-size: 12px; font-weight: 700;
+    letter-spacing: 0.8px; text-transform: uppercase;
+    color: var(--teal-dark); text-decoration: none;
+    border: 1.5px solid var(--teal-dark); border-radius: 6px;
+    padding: 5px 12px; transition: all 0.18s; cursor: pointer; background: transparent;
+  }
+  .view-all-link:hover { background: var(--teal-dark); color: white; }
   .modal-overlay {
     position: fixed; inset: 0; background: rgba(8,20,36,0.7);
     z-index: 500; display: none; align-items: center; justify-content: center;
@@ -253,94 +201,70 @@
     width: 52px; height: 52px; border-radius: 50%;
     background: linear-gradient(135deg, var(--teal-mid), var(--navy));
     display: flex; align-items: center; justify-content: center;
-    font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 20px; color: white;
-    flex-shrink: 0;
+    font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 20px; color: white; flex-shrink: 0;
   }
-  .modal-name { font-family: 'Rajdhani', sans-serif; font-size: 22px; font-weight: 700; color: var(--navy); }
+  .modal-name  { font-family: 'Rajdhani', sans-serif; font-size: 22px; font-weight: 700; color: var(--navy); }
   .modal-email { font-size: 13px; color: var(--muted); }
   .modal-close { background: none; border: none; font-size: 22px; cursor: pointer; color: var(--muted); padding: 4px; line-height: 1; }
   .modal-close:hover { color: var(--danger); }
-
   .modal-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-bottom: 24px; }
-  .modal-stat { background: rgba(255,255,255,0.5); border-radius: 10px; padding: 14px; text-align: center; border: 1px solid rgba(20,48,77,0.1); }
+  .modal-stat  { background: rgba(255,255,255,0.5); border-radius: 10px; padding: 14px; text-align: center; border: 1px solid rgba(20,48,77,0.1); }
   .modal-stat .num { font-family: 'Rajdhani', sans-serif; font-size: 26px; font-weight: 700; color: var(--navy); }
   .modal-stat .lbl { font-size: 11px; color: var(--muted); margin-top: 2px; }
-
   .modal-section-title { font-family: 'Rajdhani', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
-
   .attempt-row {
     display: flex; align-items: center; justify-content: space-between;
     padding: 12px 16px; border-radius: 10px; margin-bottom: 8px;
     background: rgba(255,255,255,0.45); border: 1px solid rgba(20,48,77,0.08);
   }
-  .attempt-row .att-num { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 13px; color: var(--navy); }
-  .attempt-row .att-date { font-size: 12px; color: var(--muted); }
+  .attempt-row .att-num   { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 13px; color: var(--navy); }
+  .attempt-row .att-date  { font-size: 12px; color: var(--muted); }
   .attempt-row .att-score { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 18px; }
-
-  .q-review { margin-top: 20px; }
   .q-review-item {
     display: flex; align-items: flex-start; gap: 10px;
     padding: 9px 12px; border-radius: 8px; margin-bottom: 6px; font-size: 12px;
   }
   .q-review-item.correct { background: rgba(0,200,83,0.08); border-left: 3px solid var(--success); }
-  .q-review-item.wrong { background: rgba(239,83,80,0.08); border-left: 3px solid var(--danger); }
-  .q-num { font-family: 'Rajdhani', sans-serif; font-weight: 700; min-width: 24px; }
+  .q-review-item.wrong   { background: rgba(239,83,80,0.08); border-left: 3px solid var(--danger); }
+  .q-num  { font-family: 'Rajdhani', sans-serif; font-weight: 700; min-width: 24px; }
   .q-text { color: var(--navy); line-height: 1.4; flex: 1; }
-  .q-icon { flex-shrink: 0; }
-
-  /* ── PROVINCE TAB ── */
-  .prov-stat { display: flex; align-items: center; gap: 10px; margin-bottom: 13px; }
-  .prov-name { width: 130px; font-size: 13px; color: var(--navy); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .prov-bar-bg { flex: 1; height: 6px; background: rgba(20,48,77,0.1); border-radius: 4px; overflow: hidden; }
-  .prov-bar-fill { height: 100%; background: linear-gradient(90deg, var(--teal-dark), var(--teal-light)); border-radius: 4px; transition: width 0.6s; }
-  .prov-count { min-width: 28px; text-align: right; font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 13px; color: var(--teal-dark); }
-
-  /* ── TOAST ── */
   .toast { position: fixed; bottom: 24px; right: 24px; background: var(--navy); border-radius: 10px; padding: 12px 18px; font-size: 13px; color: white; z-index: 9999; transform: translateY(60px); opacity: 0; transition: all 0.28s; max-width: 280px; }
-  .toast.show { transform: translateY(0); opacity: 1; }
+  .toast.show    { transform: translateY(0); opacity: 1; }
   .toast.success { background: var(--teal-dark); }
-  .toast.error { background: #c62828; }
-
+  .toast.error   { background: #c62828; }
   .spinner { display: inline-block; width: 16px; height: 16px; border: 2px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; animation: spin 0.7s linear infinite; }
   @keyframes spin { to { transform: rotate(360deg); } }
-
-  .empty-state { text-align: center; padding: 48px 24px; color: var(--muted); }
+  .empty-state    { text-align: center; padding: 48px 24px; color: var(--muted); }
   .empty-state .eicon { font-size: 44px; margin-bottom: 14px; }
   .empty-state h3 { font-family: 'Rajdhani', sans-serif; font-size: 20px; color: var(--navy); margin-bottom: 6px; }
-
   .loading-row td { text-align: center; padding: 28px; color: var(--muted); }
-
-  .tab-content { display:none; }
-  .tab-content.active { display:block; }
-
+  .tab-content        { display: none; }
+  .tab-content.active { display: block; }
   @media (max-width: 900px) { .charts-grid { grid-template-columns: 1fr; } }
   @media (max-width: 680px) { .sidebar { display: none; } .main { margin-left: 0; } .content { padding: 18px 16px; } .stats-grid { grid-template-columns: 1fr 1fr; } }
 </style>
 </head>
 <body>
 
-<!-- LOGIN -->
 <div class="login-overlay" id="login-overlay">
   <div class="login-box">
-    <!-- ── LOGO IMAGE (login screen) ── -->
     <img src="imgs/GEMS 20 Years Logo Black.png" alt="GEMS Logo" class="login-logo-img">
     <h2>Admin Portal</h2>
     <p>GEMS Quiz Results Dashboard — Authorized Access Only</p>
-    <input type="text" id="login-user" placeholder="Username" autocomplete="username">
-    <input type="password" id="login-pass" placeholder="Password" autocomplete="current-password" onkeypress="if(event.key==='Enter')doLogin()">
+    <input type="text"     id="login-user" placeholder="Username"  autocomplete="username">
+    <input type="password" id="login-pass" placeholder="Password"  autocomplete="current-password" onkeypress="if(event.key==='Enter')doLogin()">
     <div class="login-err" id="login-err">Incorrect username or password.</div>
     <button class="btn btn-teal" onclick="doLogin()" style="width:100%;padding:14px;font-size:15px;border-radius:9px;justify-content:center;">Sign In →</button>
   </div>
 </div>
 
-<!-- USER DETAIL MODAL -->
 <div class="modal-overlay" id="user-modal" onclick="closeModal(event)">
   <div class="modal" id="modal-inner">
     <div class="modal-header">
       <div style="display:flex;align-items:center;gap:14px;">
         <div class="modal-avatar" id="modal-avatar">?</div>
         <div>
-          <div class="modal-name" id="modal-name">—</div>
+          <div class="modal-name"  id="modal-name">—</div>
           <div class="modal-email" id="modal-email">—</div>
           <div style="font-size:12px;color:var(--muted);margin-top:2px;" id="modal-province">—</div>
         </div>
@@ -359,10 +283,8 @@
 </div>
 
 <div class="page" id="app" style="display:none">
-  <!-- SIDEBAR -->
   <div class="sidebar">
     <div class="sidebar-logo">
-      <!-- ── LOGO IMAGE (sidebar) ── -->
       <img src="imgs/GEMS 20 Years Logo Black.png" alt="GEMS Logo" class="sidebar-logo-img">
       <h2>GEMS ADMIN</h2>
       <p>Knowledge Hub Portal</p>
@@ -370,8 +292,8 @@
     <div class="sidebar-nav">
       <div class="nav-label">Navigation</div>
       <div class="nav-item active" onclick="switchTab('dashboard')"><span class="icon">📊</span> Dashboard</div>
-      <div class="nav-item" onclick="switchTab('results')"><span class="icon">📋</span> All Results</div>
-      <div class="nav-item" onclick="switchTab('provinces')"><span class="icon">🗺️</span> By Province</div>
+      <div class="nav-item"        onclick="switchTab('results')"  ><span class="icon">📋</span> All Results</div>
+      <div class="nav-item"        onclick="switchTab('provinces')"><span class="icon">🗺️</span> By Province</div>
     </div>
     <div class="sidebar-footer">
       <div><span class="dot-live"></span>Live Data</div>
@@ -380,7 +302,6 @@
     </div>
   </div>
 
-  <!-- MAIN -->
   <div class="main">
     <div class="topbar">
       <div class="topbar-title" id="topbar-title">Dashboard</div>
@@ -388,31 +309,38 @@
         <span class="refresh-time" id="refresh-time"></span>
         <button class="btn btn-ghost" onclick="loadData()">🔄 Refresh</button>
         <button class="btn btn-white" onclick="exportCSV()">⬇ Export CSV</button>
-        <button class="btn btn-pdf" onclick="exportPDF()">📄 PDF Summary</button>
+        <button class="btn btn-pdf"   onclick="exportPDF()">📄 PDF Summary</button>
       </div>
     </div>
 
     <div class="content">
-
-      <!-- DASHBOARD TAB -->
       <div class="tab-content active" id="tab-dashboard">
         <div class="stats-grid">
-          <div class="stat-card c-teal"><div class="stat-icon">👥</div><div class="stat-num" id="stat-total">—</div><div class="stat-label">Total Submissions</div></div>
-          <div class="stat-card c-green"><div class="stat-icon">✅</div><div class="stat-num" id="stat-pass">—</div><div class="stat-label">Passed</div></div>
-          <div class="stat-card c-red"><div class="stat-icon">❌</div><div class="stat-num" id="stat-fail">—</div><div class="stat-label">Did Not Pass</div></div>
-          <div class="stat-card c-gold"><div class="stat-icon">📈</div><div class="stat-num" id="stat-avg">—</div><div class="stat-label">Avg Score</div></div>
-          <div class="stat-card c-navy"><div class="stat-icon">🔁</div><div class="stat-num" id="stat-unique">—</div><div class="stat-label">Unique Users</div></div>
+          <div class="stat-card c-teal" ><div class="stat-icon">👥</div><div class="stat-num" id="stat-total" >—</div><div class="stat-label">Total Submissions</div></div>
+          <div class="stat-card c-green"><div class="stat-icon">✅</div><div class="stat-num" id="stat-pass"  >—</div><div class="stat-label">Passed</div></div>
+          <div class="stat-card c-red"  ><div class="stat-icon">❌</div><div class="stat-num" id="stat-fail"  >—</div><div class="stat-label">Did Not Pass</div></div>
+          <div class="stat-card c-gold" ><div class="stat-icon">📈</div><div class="stat-num" id="stat-avg"   >—</div><div class="stat-label">Avg Score</div></div>
+          <div class="stat-card c-navy" ><div class="stat-icon">🔁</div><div class="stat-num" id="stat-unique">—</div><div class="stat-label">Unique Users</div></div>
         </div>
-
         <div class="charts-grid">
-          <div class="chart-card"><h3>Pass vs Fail Rate</h3><canvas id="chart-donut"></canvas></div>
+          <div class="chart-card"><h3>Pass vs Fail Rate</h3>      <canvas id="chart-donut"   ></canvas></div>
           <div class="chart-card"><h3>Submissions by Province</h3><canvas id="chart-province"></canvas></div>
-          <div class="chart-card"><h3>Score Distribution</h3><canvas id="chart-scores"></canvas></div>
-          <div class="chart-card"><h3>Attempts per User</h3><canvas id="chart-attempts"></canvas></div>
+          <div class="chart-card"><h3>Score Distribution</h3>     <canvas id="chart-scores"  ></canvas></div>
+          <div class="chart-card"><h3>Attempts per User</h3>      <canvas id="chart-attempts"></canvas></div>
         </div>
-
+        <div class="controls-bar" style="margin-bottom:14px;">
+          <div class="search-wrap" style="max-width:380px;">
+            <input type="text" id="recent-search-input" placeholder="Search by name or email…" oninput="filterRecent()">
+          </div>
+        </div>
         <div class="table-wrap">
-          <div class="table-header"><h3>Recent Submissions</h3><span class="table-count" id="recent-count"></span></div>
+          <div class="table-header">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <h3>Recent Submissions</h3>
+              <span class="table-count" id="recent-count"></span>
+            </div>
+            <button class="view-all-link" onclick="switchTab('results')">View All Results →</button>
+          </div>
           <div style="overflow-x:auto">
             <table>
               <thead><tr><th>Name</th><th>Email</th><th>Province</th><th>Score</th><th>Status</th><th>Attempt</th><th>Date</th></tr></thead>
@@ -422,7 +350,6 @@
         </div>
       </div>
 
-      <!-- ALL RESULTS TAB -->
       <div class="tab-content" id="tab-results">
         <div class="controls-bar">
           <div class="search-wrap"><input type="text" id="search-input" placeholder="Search by name or email…" oninput="filterTable()"></div>
@@ -443,8 +370,7 @@
           <div style="overflow-x:auto">
             <table>
               <thead><tr>
-                <th onclick="sortBy('name')">Name ⇅</th>
-                <th>Email</th>
+                <th onclick="sortBy('name')">Name ⇅</th><th>Email</th>
                 <th onclick="sortBy('province')">Province ⇅</th>
                 <th onclick="sortBy('score')">Score ⇅</th>
                 <th onclick="sortBy('passed')">Status ⇅</th>
@@ -457,11 +383,10 @@
         </div>
       </div>
 
-      <!-- PROVINCES TAB -->
       <div class="tab-content" id="tab-provinces">
         <div class="charts-grid">
-          <div class="chart-card"><h3>Pass Rate by Province</h3><canvas id="chart-prov-pass"></canvas></div>
-          <div class="chart-card"><h3>Average Score by Province</h3><canvas id="chart-prov-avg"></canvas></div>
+          <div class="chart-card"><h3>Pass Rate by Province</h3>     <canvas id="chart-prov-pass"></canvas></div>
+          <div class="chart-card"><h3>Average Score by Province</h3> <canvas id="chart-prov-avg" ></canvas></div>
         </div>
         <div class="table-wrap">
           <div class="table-header"><h3>Province Breakdown</h3></div>
@@ -473,15 +398,24 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </div>
 
 <div class="toast" id="toast"></div>
 
+<!--
+  Offscreen canvases for PDF rendering.
+  A4 landscape = 297×210mm. At 96dpi that's ~1122×794px.
+  Each chart cell = roughly half the page width × half the content height.
+  We render at 2× pixel density for sharpness: ~560×320px per canvas.
+-->
+<canvas id="pdf-canvas-donut"    width="560" height="320" style="position:absolute;left:-9999px;top:-9999px;"></canvas>
+<canvas id="pdf-canvas-scores"   width="560" height="320" style="position:absolute;left:-9999px;top:-9999px;"></canvas>
+<canvas id="pdf-canvas-attempts" width="560" height="320" style="position:absolute;left:-9999px;top:-9999px;"></canvas>
+
 <script>
-const SUPABASE_URL = 'https://lgbksliquaakgwbsjule.supabase.co';
+const SUPABASE_URL      = 'https://lgbksliquaakgwbsjule.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_RE60s3HAfDcv2vwILEcGxw_NQqh_ydn';
 const { createClient } = supabase;
 const db = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -489,13 +423,74 @@ const db = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 const ADMIN_USER = 'Gems_admin';
 const ADMIN_PASS = 'GEMS@2024!';
 
-let allData = [];
+let allData   = [];
 let sortField = 'taken_at', sortDir = -1;
-let charts = {};
+let charts    = {};
+let logoBase64 = null;
 
 const PROVINCES = ['Eastern Cape','Free State','Gauteng','KwaZulu-Natal','Limpopo','Mpumalanga','North West','Northern Cape','Western Cape'];
-const TEAL = '#0f5c52', NAVY = '#14304d', GOLD = '#f5a623';
-const TEAL_LIGHT = '#1d9e8c', SUCCESS = '#00c853', DANGER = '#ef5350';
+const TEAL = '#0f5c52', NAVY = '#14304d', GOLD = '#f5a623', SUCCESS = '#00c853', DANGER = '#ef5350';
+
+/* ─── helpers ─────────────────────────────────────────────────────────── */
+
+function calcStep(max) {
+  if (max <= 10)   return 2;
+  if (max <= 20)   return 5;
+  if (max <= 50)   return 10;
+  if (max <= 100)  return 10;
+  if (max <= 200)  return 20;
+  if (max <= 500)  return 50;
+  if (max <= 1000) return 100;
+  if (max <= 5000) return 500;
+  return 1000;
+}
+
+function countYAxis(maxVal) {
+  const step    = calcStep(Math.max(maxVal, 10));
+  const maxTick = Math.ceil(Math.max(maxVal, step) / step) * step;
+  return {
+    beginAtZero: true, max: maxTick,
+    ticks: { stepSize: step, color: NAVY, font: { family: 'Rajdhani', size: 11 }, callback: (v) => (v % step === 0 ? v.toLocaleString('en-ZA') : null) },
+    grid: { color: 'rgba(20,48,77,0.07)' },
+  };
+}
+
+function provinceYAxis() {
+  return {
+    beginAtZero: true, min: 0, max: 100,
+    ticks: { stepSize: 10, color: NAVY, font: { family: 'Rajdhani', size: 11 } },
+    grid: { color: 'rgba(20,48,77,0.07)' },
+  };
+}
+
+function countYAxisPdf(maxVal) {
+  const step    = calcStep(Math.max(maxVal, 10));
+  const maxTick = Math.ceil(Math.max(maxVal, step) / step) * step;
+  return {
+    beginAtZero: true, max: maxTick,
+    ticks: { stepSize: step, color: '#14304d', font: { size: 13 }, callback: (v) => (v % step === 0 ? v.toLocaleString() : null) },
+    grid: { color: 'rgba(20,48,77,0.08)' },
+  };
+}
+
+function loadLogoBase64() {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.crossOrigin = 'Anonymous';
+    img.onload = () => {
+      const c = document.createElement('canvas');
+      c.width = img.naturalWidth || img.width;
+      c.height = img.naturalHeight || img.height;
+      c.getContext('2d').drawImage(img, 0, 0);
+      try { logoBase64 = c.toDataURL('image/png'); } catch { logoBase64 = null; }
+      resolve(logoBase64);
+    };
+    img.onerror = () => { logoBase64 = null; resolve(null); };
+    img.src = 'imgs/GEMS 20 Years Logo Black.png';
+  });
+}
+
+/* ─── auth ─────────────────────────────────────────────────────────────── */
 
 function doLogin() {
   const u = document.getElementById('login-user').value;
@@ -504,6 +499,7 @@ function doLogin() {
     document.getElementById('login-overlay').style.display = 'none';
     document.getElementById('app').style.display = 'flex';
     loadData();
+    loadLogoBase64();
   } else {
     document.getElementById('login-err').style.display = 'block';
     document.getElementById('login-pass').value = '';
@@ -513,6 +509,8 @@ function doLogout() {
   document.getElementById('login-overlay').style.display = 'flex';
   document.getElementById('app').style.display = 'none';
 }
+
+/* ─── navigation ────────────────────────────────────────────────────────── */
 
 function switchTab(name) {
   document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
@@ -526,6 +524,8 @@ function switchTab(name) {
   if (name === 'provinces') renderProvinceCharts();
 }
 
+/* ─── data loading ──────────────────────────────────────────────────────── */
+
 async function loadData() {
   try {
     const { data, error } = await db.from('quiz_results').select('*').order('taken_at', { ascending: false });
@@ -536,86 +536,111 @@ async function loadData() {
     renderAllTable();
     renderProvinces();
     showToast('✅ ' + allData.length + ' records loaded', 'success');
-  } catch(e) { showToast('Connection error', 'error'); }
+  } catch { showToast('Connection error', 'error'); }
 }
 
+/* ─── chart helpers ─────────────────────────────────────────────────────── */
+
 function destroyChart(id) { if (charts[id]) { charts[id].destroy(); delete charts[id]; } }
-function mkChart(id, type, data, options={}) {
+function mkChart(id, type, data, options = {}) {
   destroyChart(id);
   const ctx = document.getElementById(id);
   if (!ctx) return;
-  charts[id] = new Chart(ctx, { type, data, options: { responsive:true, maintainAspectRatio:true, plugins:{ legend:{ labels:{ color: NAVY, font:{ family:'Rajdhani', size:12 } } } }, ...options } });
+  charts[id] = new Chart(ctx, {
+    type, data,
+    options: {
+      responsive: true, maintainAspectRatio: true,
+      plugins: { legend: { labels: { color: NAVY, font: { family: 'Rajdhani', size: 12 } } } },
+      ...options,
+    },
+  });
 }
+
+/* ─── dashboard render ──────────────────────────────────────────────────── */
 
 function renderDashboard() {
   const total  = allData.length;
   const passed = allData.filter(r => r.passed).length;
   const failed = total - passed;
-  const avg    = total ? Math.round(allData.reduce((s,r) => s+r.score, 0) / total) : 0;
+  const avg    = total ? Math.round(allData.reduce((s, r) => s + r.score, 0) / total) : 0;
   const emails = new Set(allData.map(r => r.email));
 
-  document.getElementById('stat-total').textContent  = total;
-  document.getElementById('stat-pass').textContent   = passed;
-  document.getElementById('stat-fail').textContent   = failed;
-  document.getElementById('stat-avg').textContent    = avg + '%';
+  document.getElementById('stat-total' ).textContent = total;
+  document.getElementById('stat-pass'  ).textContent = passed;
+  document.getElementById('stat-fail'  ).textContent = failed;
+  document.getElementById('stat-avg'   ).textContent = avg + '%';
   document.getElementById('stat-unique').textContent = emails.size;
 
-  mkChart('chart-donut','doughnut',{
-    labels:['Passed','Failed'],
-    datasets:[{ data:[passed, failed], backgroundColor:[SUCCESS, DANGER], borderWidth:0, hoverOffset:4 }]
-  },{
-    cutout:'65%',
-    plugins:{ legend:{ position:'bottom', labels:{ color:NAVY, font:{family:'Rajdhani', size:13}, padding:16 } } }
+  mkChart('chart-donut', 'doughnut', {
+    labels: ['Passed', 'Failed'],
+    datasets: [{ data: [passed, failed], backgroundColor: [SUCCESS, DANGER], borderWidth: 0, hoverOffset: 4 }],
+  }, {
+    cutout: '65%',
+    plugins: { legend: { position: 'bottom', labels: { color: NAVY, font: { family: 'Rajdhani', size: 13 }, padding: 16 } } },
   });
 
   const provMap = {};
-  allData.forEach(r => { provMap[r.province] = (provMap[r.province]||0)+1; });
-  const provEntries = Object.entries(provMap).sort((a,b) => b[1]-a[1]);
-  mkChart('chart-province','bar',{
+  allData.forEach(r => { provMap[r.province] = (provMap[r.province] || 0) + 1; });
+  const provEntries = Object.entries(provMap).sort((a, b) => b[1] - a[1]);
+  mkChart('chart-province', 'bar', {
     labels: provEntries.map(([p]) => p.replace('KwaZulu-Natal','KZN').replace('Northern Cape','N. Cape').replace('Western Cape','W. Cape').replace('Eastern Cape','E. Cape').replace('North West','N. West')),
-    datasets:[{ label:'Submissions', data: provEntries.map(([,c]) => c), backgroundColor: TEAL+'cc', borderRadius:6 }]
-  },{
-    plugins:{ legend:{display:false} },
-    scales:{ x:{ ticks:{color:NAVY, font:{family:'Rajdhani', size:11}}, grid:{display:false} }, y:{ ticks:{color:NAVY, font:{family:'Rajdhani',size:11}}, grid:{color:'rgba(20,48,77,0.07)'} } }
+    datasets: [{ label: 'Submissions', data: provEntries.map(([, c]) => c), backgroundColor: TEAL + 'cc', borderRadius: 6 }],
+  }, {
+    plugins: { legend: { display: false } },
+    scales: { x: { ticks: { color: NAVY, font: { family: 'Rajdhani', size: 11 } }, grid: { display: false } }, y: provinceYAxis() },
   });
 
-  const buckets = { '0-49':0, '50-59':0, '60-69':0, '70-79':0, '80-89':0, '90-100':0 };
+  const buckets = { '0-49': 0, '50-59': 0, '60-69': 0, '70-79': 0, '80-89': 0, '90-100': 0 };
   allData.forEach(r => {
-    if (r.score < 50) buckets['0-49']++;
+    if      (r.score < 50) buckets['0-49']++;
     else if (r.score < 60) buckets['50-59']++;
     else if (r.score < 70) buckets['60-69']++;
     else if (r.score < 80) buckets['70-79']++;
     else if (r.score < 90) buckets['80-89']++;
-    else buckets['90-100']++;
+    else                   buckets['90-100']++;
   });
-  const bColors = Object.keys(buckets).map(k => parseInt(k) >= 70 ? SUCCESS+'bb' : DANGER+'bb');
-  mkChart('chart-scores','bar',{
+  const maxScore = Math.max(...Object.values(buckets), 10);
+  const bColors  = Object.keys(buckets).map(k => parseInt(k) >= 70 ? SUCCESS + 'bb' : DANGER + 'bb');
+  mkChart('chart-scores', 'bar', {
     labels: Object.keys(buckets),
-    datasets:[{ label:'Users', data: Object.values(buckets), backgroundColor: bColors, borderRadius:6 }]
-  },{
-    plugins:{ legend:{display:false} },
-    scales:{ x:{ ticks:{color:NAVY,font:{family:'Rajdhani',size:11}}, grid:{display:false} }, y:{ ticks:{color:NAVY,font:{family:'Rajdhani',size:11}}, grid:{color:'rgba(20,48,77,0.07)'} } }
+    datasets: [{ label: 'Users', data: Object.values(buckets), backgroundColor: bColors, borderRadius: 6 }],
+  }, {
+    plugins: { legend: { display: false } },
+    scales: { x: { ticks: { color: NAVY, font: { family: 'Rajdhani', size: 11 } }, grid: { display: false } }, y: countYAxis(maxScore) },
   });
 
   const attMap = {};
-  allData.forEach(r => { attMap[r.attempt_number] = (attMap[r.attempt_number]||0)+1; });
-  mkChart('chart-attempts','doughnut',{
-    labels: Object.keys(attMap).map(k => 'Attempt '+k),
-    datasets:[{ data: Object.values(attMap), backgroundColor:[TEAL+'dd', GOLD+'dd', DANGER+'dd'], borderWidth:0, hoverOffset:4 }]
-  },{
-    cutout:'55%',
-    plugins:{ legend:{ position:'bottom', labels:{ color:NAVY, font:{family:'Rajdhani',size:12}, padding:14 } } }
+  allData.forEach(r => { attMap[r.attempt_number] = (attMap[r.attempt_number] || 0) + 1; });
+  mkChart('chart-attempts', 'doughnut', {
+    labels: Object.keys(attMap).map(k => 'Attempt ' + k),
+    datasets: [{ data: Object.values(attMap), backgroundColor: [TEAL + 'dd', GOLD + 'dd', DANGER + 'dd'], borderWidth: 0, hoverOffset: 4 }],
+  }, {
+    cutout: '55%',
+    plugins: { legend: { position: 'bottom', labels: { color: NAVY, font: { family: 'Rajdhani', size: 12 }, padding: 14 } } },
   });
 
-  document.getElementById('recent-count').textContent = Math.min(10,total) + ' most recent';
-  document.getElementById('recent-tbody').innerHTML = allData.slice(0,10).length
-    ? allData.slice(0,10).map(r => buildRow(r)).join('')
-    : '<tr><td colspan="7" style="text-align:center;padding:28px;color:var(--muted)">No submissions yet</td></tr>';
+  filterRecent();
 }
+
+/* ─── recent submissions ────────────────────────────────────────────────── */
+
+function filterRecent() {
+  const search  = (document.getElementById('recent-search-input')?.value || '').toLowerCase();
+  const filtered = search
+    ? allData.filter(r => r.name?.toLowerCase().includes(search) || r.email?.toLowerCase().includes(search))
+    : allData;
+  const visible = filtered.slice(0, 10);
+  document.getElementById('recent-count').textContent = visible.length + ' of ' + filtered.length + ' shown';
+  document.getElementById('recent-tbody').innerHTML = visible.length
+    ? visible.map(r => buildRow(r)).join('')
+    : '<tr><td colspan="7" style="text-align:center;padding:28px;color:var(--muted)">No matching submissions</td></tr>';
+}
+
+/* ─── province charts ────────────────────────────────────────────────────── */
 
 function renderProvinceCharts() {
   const provData = {};
-  PROVINCES.forEach(p => provData[p] = { total:0, passed:0, scores:[] });
+  PROVINCES.forEach(p => provData[p] = { total: 0, passed: 0, scores: [] });
   allData.forEach(r => {
     if (provData[r.province]) {
       provData[r.province].total++;
@@ -623,20 +648,19 @@ function renderProvinceCharts() {
       provData[r.province].scores.push(r.score);
     }
   });
-  const active = PROVINCES.filter(p => provData[p].total > 0);
+  const active     = PROVINCES.filter(p => provData[p].total > 0);
   const shortNames = active.map(p => p.replace('KwaZulu-Natal','KZN').replace('Northern Cape','N. Cape').replace('Western Cape','W. Cape').replace('Eastern Cape','E. Cape').replace('North West','N. West'));
-  const passRates = active.map(p => provData[p].total ? Math.round((provData[p].passed/provData[p].total)*100) : 0);
-  const avgScores = active.map(p => provData[p].scores.length ? Math.round(provData[p].scores.reduce((s,x)=>s+x,0)/provData[p].scores.length) : 0);
-  const axisOpts = { x:{ ticks:{color:NAVY,font:{family:'Rajdhani',size:11}}, grid:{display:false} }, y:{ ticks:{color:NAVY,font:{family:'Rajdhani',size:11},callback:v=>v+'%'}, grid:{color:'rgba(20,48,77,0.07)'}, min:0, max:100 } };
-  mkChart('chart-prov-pass','bar',{
-    labels: shortNames,
-    datasets:[{ label:'Pass Rate', data: passRates, backgroundColor: passRates.map(r => r>=70?SUCCESS+'cc':DANGER+'cc'), borderRadius:6 }]
-  },{ plugins:{legend:{display:false}}, scales: axisOpts });
-  mkChart('chart-prov-avg','bar',{
-    labels: shortNames,
-    datasets:[{ label:'Avg Score', data: avgScores, backgroundColor: TEAL+'cc', borderRadius:6 }]
-  },{ plugins:{legend:{display:false}}, scales: axisOpts });
+  const passRates  = active.map(p => provData[p].total ? Math.round((provData[p].passed / provData[p].total) * 100) : 0);
+  const avgScores  = active.map(p => provData[p].scores.length ? Math.round(provData[p].scores.reduce((s, x) => s + x, 0) / provData[p].scores.length) : 0);
+  const axisOpts   = {
+    x: { ticks: { color: NAVY, font: { family: 'Rajdhani', size: 11 } }, grid: { display: false } },
+    y: { ticks: { color: NAVY, font: { family: 'Rajdhani', size: 11 }, callback: v => v + '%' }, grid: { color: 'rgba(20,48,77,0.07)' }, min: 0, max: 100 },
+  };
+  mkChart('chart-prov-pass', 'bar', { labels: shortNames, datasets: [{ label: 'Pass Rate', data: passRates, backgroundColor: passRates.map(r => r >= 70 ? SUCCESS + 'cc' : DANGER + 'cc'), borderRadius: 6 }] }, { plugins: { legend: { display: false } }, scales: axisOpts });
+  mkChart('chart-prov-avg',  'bar', { labels: shortNames, datasets: [{ label: 'Avg Score', data: avgScores,  backgroundColor: TEAL + 'cc', borderRadius: 6 }] }, { plugins: { legend: { display: false } }, scales: axisOpts });
 }
+
+/* ─── all-results table ──────────────────────────────────────────────────── */
 
 function renderAllTable() { filterTable(); }
 
@@ -647,10 +671,10 @@ function filterTable() {
   let filtered = allData.filter(r => {
     const ms = !search || r.name?.toLowerCase().includes(search) || r.email?.toLowerCase().includes(search);
     const mp = !prov   || r.province === prov;
-    const mu = !status || (status==='pass' ? r.passed : !r.passed);
+    const mu = !status || (status === 'pass' ? r.passed : !r.passed);
     return ms && mp && mu;
   });
-  filtered.sort((a,b) => {
+  filtered.sort((a, b) => {
     let va = a[sortField], vb = b[sortField];
     if (typeof va === 'string') { va = va.toLowerCase(); vb = vb.toLowerCase(); }
     return va < vb ? -sortDir : va > vb ? sortDir : 0;
@@ -667,26 +691,28 @@ function sortBy(field) {
 }
 
 function buildRow(r) {
-  const date = r.taken_at ? new Date(r.taken_at).toLocaleDateString('en-ZA',{day:'2-digit',month:'short',year:'numeric'}) : '—';
+  const date = r.taken_at ? new Date(r.taken_at).toLocaleDateString('en-ZA', { day: '2-digit', month: 'short', year: 'numeric' }) : '—';
   return `<tr onclick="openUserModal('${encodeURIComponent(r.email)}')">
-    <td><div class="td-name">${r.name||'—'}</div></td>
-    <td><div class="td-email">${r.email||'—'}</div></td>
-    <td>${r.province||'—'}</td>
+    <td><div class="td-name">${r.name || '—'}</div></td>
+    <td><div class="td-email">${r.email || '—'}</div></td>
+    <td>${r.province || '—'}</td>
     <td>
       <div class="score-bar-wrap">
-        <div class="score-bar"><div class="score-bar-fill ${r.passed?'pass':'fail'}" style="width:${r.score}%"></div></div>
-        <div class="score-val" style="color:${r.passed?'var(--success)':'var(--danger)'}">${r.score}%</div>
+        <div class="score-bar"><div class="score-bar-fill ${r.passed ? 'pass' : 'fail'}" style="width:${r.score}%"></div></div>
+        <div class="score-val" style="color:${r.passed ? 'var(--success)' : 'var(--danger)'}">${r.score}%</div>
       </div>
     </td>
-    <td><span class="badge ${r.passed?'badge-pass':'badge-fail'}">${r.passed?'✓ Passed':'✗ Failed'}</span></td>
-    <td style="text-align:center;color:var(--muted)">${r.attempt_number||1}</td>
+    <td><span class="badge ${r.passed ? 'badge-pass' : 'badge-fail'}">${r.passed ? '✓ Passed' : '✗ Failed'}</span></td>
+    <td style="text-align:center;color:var(--muted)">${r.attempt_number || 1}</td>
     <td style="color:var(--muted);font-size:12px">${date}</td>
   </tr>`;
 }
 
+/* ─── province table ─────────────────────────────────────────────────────── */
+
 function renderProvinces() {
   const provData = {};
-  PROVINCES.forEach(p => provData[p] = { total:0, passed:0, scores:[] });
+  PROVINCES.forEach(p => provData[p] = { total: 0, passed: 0, scores: [] });
   allData.forEach(r => {
     if (provData[r.province]) {
       provData[r.province].total++;
@@ -695,20 +721,15 @@ function renderProvinces() {
     }
   });
   const rows = PROVINCES.filter(p => provData[p].total > 0).map(p => {
-    const d = provData[p];
-    const rate = d.total ? Math.round((d.passed/d.total)*100) : 0;
-    const avg  = d.scores.length ? Math.round(d.scores.reduce((s,x)=>s+x,0)/d.scores.length) : 0;
+    const d    = provData[p];
+    const rate = d.total ? Math.round((d.passed / d.total) * 100) : 0;
+    const avg  = d.scores.length ? Math.round(d.scores.reduce((s, x) => s + x, 0) / d.scores.length) : 0;
     return `<tr>
       <td style="font-weight:600;color:var(--navy)">${p}</td>
       <td>${d.total}</td>
       <td style="color:var(--success)">${d.passed}</td>
-      <td style="color:var(--danger)">${d.total-d.passed}</td>
-      <td>
-        <div class="score-bar-wrap">
-          <div class="score-bar"><div class="score-bar-fill pass" style="width:${rate}%"></div></div>
-          <div class="score-val" style="color:var(--teal-dark)">${rate}%</div>
-        </div>
-      </td>
+      <td style="color:var(--danger)">${d.total - d.passed}</td>
+      <td><div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill pass" style="width:${rate}%"></div></div><div class="score-val" style="color:var(--teal-dark)">${rate}%</div></div></td>
       <td style="font-family:'Rajdhani',sans-serif;font-weight:700">${avg}%</td>
     </tr>`;
   });
@@ -717,49 +738,51 @@ function renderProvinces() {
     : `<tr><td colspan="6" style="text-align:center;padding:36px;color:var(--muted)">No data available</td></tr>`;
 }
 
+/* ─── user modal ─────────────────────────────────────────────────────────── */
+
 function openUserModal(emailEnc) {
-  const email = decodeURIComponent(emailEnc);
-  const userRows = allData.filter(r => r.email === email).sort((a,b) => a.attempt_number - b.attempt_number);
+  const email    = decodeURIComponent(emailEnc);
+  const userRows = allData.filter(r => r.email === email).sort((a, b) => a.attempt_number - b.attempt_number);
   if (!userRows.length) return;
-  const latest = userRows[userRows.length-1];
-  const best   = Math.max(...userRows.map(r => r.score));
+  const latest    = userRows[userRows.length - 1];
+  const best      = Math.max(...userRows.map(r => r.score));
   const hasPassed = userRows.some(r => r.passed);
-  const initials = (latest.name||'?').split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
-  document.getElementById('modal-avatar').textContent = initials;
-  document.getElementById('modal-name').textContent = latest.name || '—';
-  document.getElementById('modal-email').textContent = email;
-  document.getElementById('modal-province').textContent = '📍 ' + (latest.province||'—');
+  const initials  = (latest.name || '?').split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2);
+  document.getElementById('modal-avatar').textContent   = initials;
+  document.getElementById('modal-name').textContent     = latest.name || '—';
+  document.getElementById('modal-email').textContent    = email;
+  document.getElementById('modal-province').textContent = '📍 ' + (latest.province || '—');
   document.getElementById('modal-attempts').textContent = userRows.length;
-  document.getElementById('modal-best').textContent = best + '%';
+  document.getElementById('modal-best').textContent     = best + '%';
   document.getElementById('modal-status-badge').innerHTML = hasPassed
     ? '<span style="color:var(--success)">Passed</span>'
     : '<span style="color:var(--danger)">Not Passed</span>';
   document.getElementById('modal-attempts-list').innerHTML = userRows.map(r => {
-    const date = r.taken_at ? new Date(r.taken_at).toLocaleDateString('en-ZA',{day:'2-digit',month:'short',year:'numeric'}) : '—';
+    const date = r.taken_at ? new Date(r.taken_at).toLocaleDateString('en-ZA', { day: '2-digit', month: 'short', year: 'numeric' }) : '—';
     return `<div class="attempt-row">
       <div><div class="att-num">Attempt ${r.attempt_number}</div><div class="att-date">${date}</div></div>
-      <div><span class="badge ${r.passed?'badge-pass':'badge-fail'}">${r.passed?'✓ Passed':'✗ Failed'}</span></div>
-      <div class="att-score" style="color:${r.passed?'var(--success)':'var(--danger)'}">${r.score}%</div>
+      <div><span class="badge ${r.passed ? 'badge-pass' : 'badge-fail'}">${r.passed ? '✓ Passed' : '✗ Failed'}</span></div>
+      <div class="att-score" style="color:${r.passed ? 'var(--success)' : 'var(--danger)'}">${r.score}%</div>
     </div>`;
   }).join('');
   const lastWithAnswers = [...userRows].reverse().find(r => r.answers);
-  if (lastWithAnswers && lastWithAnswers.answers) {
+  if (lastWithAnswers?.answers) {
     const qAnswers = JSON.parse(lastWithAnswers.answers);
-    const qDefs = getQuestions();
-    const reviewHtml = `
+    const qDefs    = getQuestions();
+    document.getElementById('modal-review-section').innerHTML = `
       <div style="margin-top:20px;">
         <div class="modal-section-title" style="margin-bottom:10px;">Latest Attempt — Question Review</div>
-        ${qDefs.map((q,i) => {
+        ${qDefs.map((q, i) => {
           const isOk = qAnswers[i] === q.correct;
-          const ua = qAnswers[i] !== null ? q.options[qAnswers[i]] : '—';
-          return `<div class="q-review-item ${isOk?'correct':'wrong'}">
-            <div class="q-icon">${isOk?'✅':'❌'}</div>
-            <div class="q-num">Q${i+1}</div>
-            <div class="q-text"><strong>${q.text.slice(0,60)}${q.text.length>60?'…':''}</strong><br><span style="color:var(--muted);font-size:11px;">Your answer: ${ua}</span></div>
+          const ua   = qAnswers[i] != null ? q.options[qAnswers[i]] : '—';
+          return `<div class="q-review-item ${isOk ? 'correct' : 'wrong'}">
+            <div style="flex-shrink:0">${isOk ? '✅' : '❌'}</div>
+            <div class="q-num">Q${i + 1}</div>
+            <div class="q-text"><strong>${q.text.slice(0, 60)}${q.text.length > 60 ? '…' : ''}</strong><br>
+              <span style="color:var(--muted);font-size:11px;">Your answer: ${ua}</span></div>
           </div>`;
         }).join('')}
       </div>`;
-    document.getElementById('modal-review-section').innerHTML = reviewHtml;
   } else {
     document.getElementById('modal-review-section').innerHTML = '';
   }
@@ -767,10 +790,11 @@ function openUserModal(emailEnc) {
 }
 
 function closeModal(e) {
-  if (e.target === document.getElementById('user-modal')) {
+  if (e.target === document.getElementById('user-modal'))
     document.getElementById('user-modal').classList.remove('open');
-  }
 }
+
+/* ─── questions ──────────────────────────────────────────────────────────── */
 
 function getQuestions() {
   return [
@@ -797,113 +821,234 @@ function getQuestions() {
   ];
 }
 
-function exportCSV() {
-  if (!allData.length) { showToast('No data to export', 'error'); return; }
-  const headers = ['Name','Email','Province','Score','Passed','Attempt','Date'];
-  const rows = allData.map(r => [
-    `"${r.name||''}"`,`"${r.email||''}"`,`"${r.province||''}"`,
-    r.score, r.passed?'Yes':'No', r.attempt_number||1,
-    r.taken_at ? new Date(r.taken_at).toLocaleDateString('en-ZA') : ''
-  ].join(','));
-  const csv = [headers.join(','), ...rows].join('\n');
-  const blob = new Blob([csv], { type:'text/csv' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url; a.download = `GEMS_Results_${new Date().toISOString().slice(0,10)}.csv`; a.click();
-  URL.revokeObjectURL(url);
-  showToast('✅ CSV exported', 'success');
+/* ─── PDF chart rendering ────────────────────────────────────────────────── */
+
+function renderPdfCharts() {
+  return new Promise((resolve) => {
+    const total  = allData.length;
+    const passed = allData.filter(r => r.passed).length;
+    const failed = total - passed;
+
+    const buckets = { '0-49':0,'50-59':0,'60-69':0,'70-79':0,'80-89':0,'90-100':0 };
+    allData.forEach(r => {
+      if      (r.score < 50) buckets['0-49']++;
+      else if (r.score < 60) buckets['50-59']++;
+      else if (r.score < 70) buckets['60-69']++;
+      else if (r.score < 80) buckets['70-79']++;
+      else if (r.score < 90) buckets['80-89']++;
+      else                   buckets['90-100']++;
+    });
+    const maxScore = Math.max(...Object.values(buckets), 10);
+
+    const attMap = {};
+    allData.forEach(r => { attMap[r.attempt_number] = (attMap[r.attempt_number] || 0) + 1; });
+
+    let done = 0;
+    const images = {};
+    const TOTAL = 3;
+
+    function tryResolve(key, canvas) {
+      images[key] = canvas.toDataURL('image/png');
+      if (++done >= TOTAL) resolve(images);
+    }
+
+    const bColors = Object.keys(buckets).map(k => parseInt(k) >= 70 ? '#00c853bb' : '#ef5350bb');
+
+    function makeOffscreen(id, type, data, options) {
+      const canvas = document.getElementById(id);
+      if (charts[id]) { charts[id].destroy(); delete charts[id]; }
+      charts[id] = new Chart(canvas, {
+        type, data,
+        options: {
+          ...options,
+          responsive: false,
+          maintainAspectRatio: false,
+          animation: { onComplete: () => tryResolve(id.replace('pdf-canvas-', ''), canvas) },
+        },
+      });
+    }
+
+    makeOffscreen('pdf-canvas-donut', 'doughnut', {
+      labels: ['Passed','Failed'],
+      datasets: [{ data:[passed,failed], backgroundColor:['#00c853','#ef5350'], borderWidth:0 }],
+    }, {
+      cutout: '60%',
+      plugins: { legend: { position:'bottom', labels:{ color:'#14304d', font:{ size:14 }, padding:14 } } },
+    });
+
+    makeOffscreen('pdf-canvas-scores', 'bar', {
+      labels: Object.keys(buckets),
+      datasets: [{ label:'Users', data: Object.values(buckets), backgroundColor: bColors, borderRadius: 4 }],
+    }, {
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { ticks: { color:'#14304d', font:{ size:13 } }, grid: { display: false } },
+        y: countYAxisPdf(maxScore),
+      },
+    });
+
+    makeOffscreen('pdf-canvas-attempts', 'doughnut', {
+      labels: Object.keys(attMap).map(k => 'Attempt ' + k),
+      datasets: [{ data: Object.values(attMap), backgroundColor:['#0f5c52dd','#f5a623dd','#ef5350dd'], borderWidth:0 }],
+    }, {
+      cutout: '55%',
+      plugins: { legend: { position:'bottom', labels:{ color:'#14304d', font:{ size:14 }, padding:14 } } },
+    });
+  });
 }
 
-function exportPDF() {
+/* ─── PDF export ─────────────────────────────────────────────────────────── */
+
+async function exportPDF() {
   if (!allData.length) { showToast('No data to export', 'error'); return; }
   showToast('📄 Generating PDF…', 'success');
 
+  const chartImages = await renderPdfCharts();
+
   const { jsPDF } = window.jspdf;
-  const doc = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
+  /* A4 landscape: 297 × 210 mm */
+  const doc = new jsPDF({ orientation:'landscape', unit:'mm', format:'a4' });
   const PW = 297, PH = 210;
-  const dateStr = new Date().toLocaleDateString('en-ZA', { day: '2-digit', month: 'long', year: 'numeric' });
+  const dateStr = new Date().toLocaleDateString('en-ZA', { day:'2-digit', month:'long', year:'numeric' });
 
-  const C_TEAL    = [15, 92, 82];
-  const C_NAVY    = [20, 48, 77];
-  const C_GOLD    = [245, 166, 35];
-  const C_WHITE   = [255, 255, 255];
-  const C_LTEAL   = [184, 223, 217];
-  const C_SUCCESS = [0, 160, 67];
-  const C_DANGER  = [220, 53, 50];
-  const C_MUTED   = [90, 158, 150];
-  const C_BGLIGHT = [214, 238, 234];
+  const C_TEAL    = [15,92,82];
+  const C_NAVY    = [20,48,77];
+  const C_WHITE   = [255,255,255];
+  const C_SUCCESS = [0,160,67];
+  const C_DANGER  = [220,53,50];
+  const C_MUTED   = [90,158,150];
+  const C_BGLIGHT = [214,238,234];
+  const C_BORDER  = [180,215,210];
 
-  // PAGE 1
-  doc.setFillColor(...C_TEAL);
-  doc.rect(0, 0, PW, 30, 'F');
-
-  const hx = 16, hy = 15, hr = 9;
-  const hexPts = [];
-  for (let i = 0; i < 6; i++) {
-    const ang = (Math.PI / 180) * (30 + 60 * i);
-    hexPts.push([hx + hr * Math.cos(ang), hy + hr * Math.sin(ang)]);
+  function drawHeader(pageLabel, subtitle) {
+    doc.setFillColor(...C_TEAL);
+    doc.rect(0, 0, PW, 26, 'F');
+    if (logoBase64) {
+      try {
+        doc.setFillColor(255,255,255);
+        doc.roundedRect(6, 4, 34, 18, 2, 2, 'F');
+        doc.addImage(logoBase64, 'PNG', 7, 5, 32, 16);
+      } catch { drawHexFallback(13, 13); }
+    } else {
+      drawHexFallback(13, 13);
+    }
+    doc.setFont('helvetica','bold');   doc.setFontSize(16); doc.setTextColor(...C_WHITE);
+    doc.text(pageLabel, 46, 11);
+    doc.setFont('helvetica','normal'); doc.setFontSize(9);
+    doc.text(subtitle, 46, 20);
+    doc.setFontSize(8.5); doc.setTextColor(200,230,226);
+    doc.text(dateStr + '   |   CONFIDENTIAL', PW - 8, 11, { align:'right' });
   }
-  doc.setFillColor(29, 158, 140);
-  doc.setLineWidth(0);
-  doc.lines(hexPts.slice(1).map((p, i) => [p[0] - hexPts[i][0], p[1] - hexPts[i][1]]), hexPts[0][0], hexPts[0][1], [1, 1], 'F', true);
-  const hr2 = 5.5;
-  const hexPts2 = [];
-  for (let i = 0; i < 6; i++) {
-    const ang = (Math.PI / 180) * (30 + 60 * i);
-    hexPts2.push([hx + hr2 * Math.cos(ang), hy + hr2 * Math.sin(ang)]);
+
+  function drawHexFallback(cx, cy) {
+    const r1 = 8, r2 = 5;
+    const pts = (r) => Array.from({length:6}, (_, i) => {
+      const a = Math.PI/180*(30+60*i);
+      return [cx + r*Math.cos(a), cy + r*Math.sin(a)];
+    });
+    const p1 = pts(r1), p2 = pts(r2);
+    doc.setFillColor(29,158,140);
+    doc.lines(p1.slice(1).map((p,i)=>[p[0]-p1[i][0],p[1]-p1[i][1]]), p1[0][0], p1[0][1], [1,1], 'F', true);
+    doc.setFillColor(15,92,82);
+    doc.lines(p2.slice(1).map((p,i)=>[p[0]-p2[i][0],p[1]-p2[i][1]]), p2[0][0], p2[0][1], [1,1], 'F', true);
+    doc.setFont('helvetica','bold'); doc.setFontSize(5.5); doc.setTextColor(...C_WHITE);
+    doc.text('GEM', cx, cy+2, { align:'center' });
   }
-  doc.setFillColor(15, 92, 82);
-  doc.lines(hexPts2.slice(1).map((p, i) => [p[0] - hexPts2[i][0], p[1] - hexPts2[i][1]]), hexPts2[0][0], hexPts2[0][1], [1, 1], 'F', true);
-  doc.setFont('helvetica', 'bold');
-  doc.setFontSize(6.5);
-  doc.setTextColor(...C_WHITE);
-  doc.text('GEM', hx, hy + 2.2, { align: 'center' });
 
-  doc.setFont('helvetica', 'bold');
-  doc.setFontSize(19);
-  doc.setTextColor(...C_WHITE);
-  doc.text('GEMS \u2013 Concept Clarification Series', 31, 13);
-  doc.setFontSize(11);
-  doc.setFont('helvetica', 'normal');
-  doc.text('Episode 1 Assessment \u2014 Executive Summary', 31, 22);
-  doc.setFontSize(10);
-  doc.setTextColor(...C_WHITE);
-  doc.text('Generated: ' + dateStr, PW - 10, 13, { align: 'right' });
-  doc.text('CONFIDENTIAL - Admin Use Only', PW - 10, 22, { align: 'right' });
+  /* helper: draw a labelled chart cell with border */
+  function drawChartCell(label, imgKey, x, y, w, h) {
+    /* light card background */
+    doc.setFillColor(...C_BGLIGHT);
+    doc.roundedRect(x, y, w, h, 2, 2, 'F');
+    /* subtle border */
+    doc.setDrawColor(...C_BORDER);
+    doc.setLineWidth(0.3);
+    doc.roundedRect(x, y, w, h, 2, 2, 'S');
+    /* title bar */
+    doc.setFillColor(...C_TEAL);
+    doc.roundedRect(x, y, w, 7, 2, 2, 'F');
+    doc.rect(x, y + 3, w, 4, 'F'); /* square off bottom of title bar */
+    doc.setFont('helvetica','bold'); doc.setFontSize(8); doc.setTextColor(...C_WHITE);
+    doc.text(label, x + w/2, y + 5, { align:'center' });
+    /* chart image inside cell */
+    if (chartImages[imgKey]) {
+      doc.addImage(chartImages[imgKey], 'PNG', x + 2, y + 9, w - 4, h - 11);
+    }
+  }
 
-  const total   = allData.length;
-  const passed  = allData.filter(r => r.passed).length;
-  const failed  = total - passed;
-  const avg     = total ? Math.round(allData.reduce((s,r) => s+r.score,0)/total) : 0;
-  const unique  = new Set(allData.map(r => r.email)).size;
+  /* ── PAGE 1: KPI summary + 3 charts in a 2×2 grid ── */
+  drawHeader('Concept Clarification Series', 'Episode 1 Assessment — Executive Summary');
+
+  const total    = allData.length;
+  const passed   = allData.filter(r => r.passed).length;
+  const failed   = total - passed;
+  const avg      = total ? Math.round(allData.reduce((s,r)=>s+r.score,0)/total) : 0;
+  const unique   = new Set(allData.map(r => r.email)).size;
   const passRate = total ? Math.round((passed/total)*100) : 0;
 
-  const kpis = [
-    { label: 'Total Submissions', value: String(total),       color: C_TEAL },
-    { label: 'Passed',            value: String(passed),      color: C_SUCCESS },
-    { label: 'Did Not Pass',      value: String(failed),      color: C_DANGER },
-    { label: 'Pass Rate',         value: passRate + '%',      color: [15,92,82] },
-    { label: 'Average Score',     value: avg + '%',           color: [20,100,160] },
-    { label: 'Unique Users',      value: String(unique),      color: C_NAVY },
-  ];
 
-  const cardW = 44, cardH = 26, cardY = 36, cardGap = 4;
-  const startX = (PW - (kpis.length * cardW + (kpis.length-1) * cardGap)) / 2;
-  kpis.forEach((k, i) => {
-    const cx = startX + i * (cardW + cardGap);
-    doc.setFillColor(...C_BGLIGHT);
-    doc.roundedRect(cx, cardY, cardW, cardH, 3, 3, 'F');
-    doc.setFillColor(...k.color);
-    doc.roundedRect(cx, cardY, cardW, 2, 1, 1, 'F');
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(18);
-    doc.setTextColor(...k.color);
-    doc.text(k.value, cx + cardW/2, cardY + 14, { align: 'center' });
-    doc.setFont('helvetica', 'normal');
-    doc.setFontSize(8);
-    doc.setTextColor(...C_MUTED);
-    doc.text(k.label, cx + cardW/2, cardY + 22, { align: 'center' });
+
+
+   
+
+  const COL_W  = 137;
+  const ROW_H  = 74;
+  const COL_GAP = 7;
+  const LEFT_X  = 8;
+  const RIGHT_X = LEFT_X + COL_W + COL_GAP;
+  const ROW1_Y  = 28;
+  const ROW2_Y  = ROW1_Y + ROW_H + 6;
+
+  /* Top-left: Pass vs Fail donut */
+  drawChartCell('Pass vs Fail Rate', 'donut', LEFT_X, ROW1_Y, COL_W, ROW_H);
+
+  /* Top-right: Key Stats summary panel (no 4th chart — fills space nicely) */
+  doc.setFillColor(...C_BGLIGHT);
+  doc.roundedRect(RIGHT_X, ROW1_Y, COL_W, ROW_H, 2, 2, 'F');
+  doc.setDrawColor(...C_BORDER); doc.setLineWidth(0.3);
+  doc.roundedRect(RIGHT_X, ROW1_Y, COL_W, ROW_H, 2, 2, 'S');
+  doc.setFillColor(...C_TEAL);
+  doc.roundedRect(RIGHT_X, ROW1_Y, COL_W, 7, 2, 2, 'F');
+  doc.rect(RIGHT_X, ROW1_Y + 3, COL_W, 4, 'F');
+  doc.setFont('helvetica','bold'); doc.setFontSize(8); doc.setTextColor(...C_WHITE);
+  doc.text('Assessment Summary', RIGHT_X + COL_W/2, ROW1_Y + 5, { align:'center' });
+
+  /* Summary stats inside the top-right cell */
+  const summaryItems = [
+    { label: 'Total Submissions', value: String(total),       col: C_NAVY    },
+    { label: 'Passed',            value: String(passed),      col: C_SUCCESS  },
+    { label: 'Did Not Pass',      value: String(failed),      col: C_DANGER   },
+    { label: 'Pass Rate',         value: passRate + '%',      col: C_TEAL     },
+    { label: 'Average Score',     value: avg + '%',           col: [20,100,160]},
+    { label: 'Unique Users',      value: String(unique),      col: C_NAVY     },
+  ];
+  const sItemH = (ROW_H - 12) / summaryItems.length;
+  summaryItems.forEach((s, i) => {
+    const sy = ROW1_Y + 11 + i * sItemH;
+    /* alternating row bg */
+    if (i % 2 === 0) {
+      doc.setFillColor(200, 230, 226);
+      doc.rect(RIGHT_X + 2, sy, COL_W - 4, sItemH, 'F');
+    }
+    doc.setFont('helvetica','normal'); doc.setFontSize(8.5); doc.setTextColor(...C_NAVY);
+    doc.text(s.label, RIGHT_X + 6, sy + sItemH * 0.65);
+    doc.setFont('helvetica','bold'); doc.setFontSize(9); doc.setTextColor(...s.col);
+    doc.text(s.value, RIGHT_X + COL_W - 6, sy + sItemH * 0.65, { align:'right' });
   });
+
+  /* Bottom-left: Score Distribution */
+  drawChartCell('Score Distribution', 'scores', LEFT_X, ROW2_Y, COL_W, ROW_H);
+
+  /* Bottom-right: Attempts per User */
+  drawChartCell('Attempts per User', 'attempts', RIGHT_X, ROW2_Y, COL_W, ROW_H);
+
+  /* Footer */
+  doc.setFont('helvetica','normal'); doc.setFontSize(7); doc.setTextColor(...C_MUTED);
+  doc.text('Concept Clarification Series  |  Episode 1 Assessment  |  Page 1 of 3', PW/2, PH - 3, { align:'center' });
+
+  /* ── PAGE 2: Province breakdown ── */
+  doc.addPage();
+  drawHeader('Concept Clarification Series — Province Breakdown', 'Episode 1 Assessment');
 
   const provData = {};
   PROVINCES.forEach(p => provData[p] = { total:0, passed:0, scores:[] });
@@ -914,136 +1059,92 @@ function exportPDF() {
       provData[r.province].scores.push(r.score);
     }
   });
-  const activeProvs = PROVINCES.filter(p => provData[p].total > 0);
-
-  doc.setFillColor(...C_NAVY);
-  doc.roundedRect(10, 66, PW - 20, 8, 2, 2, 'F');
-  doc.setFont('helvetica', 'bold');
-  doc.setFontSize(10);
-  doc.setTextColor(...C_WHITE);
-  doc.text('PROVINCE BREAKDOWN', 15, 72);
-
+  const activeProvs   = PROVINCES.filter(p => provData[p].total > 0);
   const provTableData = activeProvs.map(p => {
-    const d = provData[p];
+    const d    = provData[p];
     const rate = d.total ? Math.round((d.passed/d.total)*100) : 0;
     const avgS = d.scores.length ? Math.round(d.scores.reduce((s,x)=>s+x,0)/d.scores.length) : 0;
-    return [p, String(d.total), String(d.passed), String(d.total - d.passed), rate + '%', avgS + '%'];
+    return [p, String(d.total), String(d.passed), String(d.total-d.passed), rate+'%', avgS+'%'];
   });
+
+  doc.setFillColor(...C_NAVY); doc.roundedRect(8, 29, PW-16, 7, 1.5, 1.5, 'F');
+  doc.setFont('helvetica','bold'); doc.setFontSize(9); doc.setTextColor(...C_WHITE);
+  doc.text('PROVINCE BREAKDOWN', 13, 34.5);
 
   doc.autoTable({
-    startY: 76,
-    head: [['Province', 'Submissions', 'Passed', 'Failed', 'Pass Rate', 'Avg Score']],
-    body: provTableData,
-    margin: { left: 10, right: 10 },
-    tableWidth: PW - 20,
-    styles: { font: 'helvetica', fontSize: 11, cellPadding: 4, textColor: C_NAVY, lineColor: [200, 230, 226], lineWidth: 0.3 },
-    headStyles: { fillColor: C_TEAL, textColor: C_WHITE, fontStyle: 'bold', fontSize: 11 },
-    alternateRowStyles: { fillColor: C_BGLIGHT },
-    bodyStyles: { fillColor: C_WHITE },
-    columnStyles: { 0: { fontStyle: 'bold' }, 4: { textColor: C_SUCCESS, fontStyle: 'bold' }, 5: { textColor: C_TEAL, fontStyle: 'bold' } },
-    didParseCell: (data) => {
-      if (data.section === 'body' && data.column.index === 3) {
-        const val = parseInt(data.cell.raw);
-        if (val > 0) data.cell.styles.textColor = C_DANGER;
-      }
-    }
+    startY: 38, head:[['Province','Submissions','Passed','Failed','Pass Rate','Avg Score']],
+    body: provTableData, margin:{ left:8, right:8 }, tableWidth: PW-16,
+    styles:{ font:'helvetica', fontSize:11, cellPadding:4, textColor:C_NAVY, lineColor:C_BORDER, lineWidth:0.3 },
+    headStyles:{ fillColor:C_TEAL, textColor:C_WHITE, fontStyle:'bold', fontSize:11 },
+    alternateRowStyles:{ fillColor:C_BGLIGHT }, bodyStyles:{ fillColor:[255,255,255] },
+    columnStyles:{ 0:{ fontStyle:'bold' }, 4:{ textColor:C_SUCCESS, fontStyle:'bold' }, 5:{ textColor:C_TEAL, fontStyle:'bold' } },
+    didParseCell:(d) => { if (d.section==='body' && d.column.index===3 && parseInt(d.cell.raw)>0) d.cell.styles.textColor=C_DANGER; },
   });
 
-  doc.setFontSize(8);
-  doc.setTextColor(...C_MUTED);
-  doc.text('GEMS - Concept Clarification Series  |  Episode 1 Assessment  |  Page 1 of 2', PW/2, PH - 6, { align: 'center' });
+  doc.setFont('helvetica','normal'); doc.setFontSize(7); doc.setTextColor(...C_MUTED);
+  doc.text('Concept Clarification Series  |  Episode 1 Assessment  |  Page 2 of 3', PW/2, PH - 3, { align:'center' });
 
-  // PAGE 2
+  /* ── PAGE 3: Individual results ── */
   doc.addPage();
-  doc.setFillColor(...C_TEAL);
-  doc.rect(0, 0, PW, 26, 'F');
+  drawHeader('Concept Clarification Series — All Submissions', 'Episode 1 Assessment');
 
-  const hx2 = 13, hy2 = 13, hr2b = 7;
-  const hexPts3 = [];
-  for (let i = 0; i < 6; i++) {
-    const ang = (Math.PI / 180) * (30 + 60 * i);
-    hexPts3.push([hx2 + hr2b * Math.cos(ang), hy2 + hr2b * Math.sin(ang)]);
-  }
-  doc.setFillColor(29, 158, 140);
-  doc.lines(hexPts3.slice(1).map((p, i) => [p[0] - hexPts3[i][0], p[1] - hexPts3[i][1]]), hexPts3[0][0], hexPts3[0][1], [1,1], 'F', true);
-  const hr2c = 4.2;
-  const hexPts4 = [];
-  for (let i = 0; i < 6; i++) {
-    const ang = (Math.PI / 180) * (30 + 60 * i);
-    hexPts4.push([hx2 + hr2c * Math.cos(ang), hy2 + hr2c * Math.sin(ang)]);
-  }
-  doc.setFillColor(15, 92, 82);
-  doc.lines(hexPts4.slice(1).map((p, i) => [p[0] - hexPts4[i][0], p[1] - hexPts4[i][1]]), hexPts4[0][0], hexPts4[0][1], [1,1], 'F', true);
-  doc.setFont('helvetica', 'bold');
-  doc.setFontSize(5.5);
-  doc.setTextColor(...C_WHITE);
-  doc.text('GEM', hx2, hy2 + 1.8, { align: 'center' });
+  doc.setFillColor(...C_NAVY); doc.roundedRect(8, 29, PW-16, 7, 1.5, 1.5, 'F');
+  doc.setFont('helvetica','bold'); doc.setFontSize(9); doc.setTextColor(...C_WHITE);
+  doc.text('INDIVIDUAL RESULTS  –  ' + total + ' TOTAL SUBMISSIONS', 13, 34.5);
 
-  doc.setFont('helvetica', 'bold');
-  doc.setFontSize(14);
-  doc.setTextColor(...C_WHITE);
-  doc.text('GEMS \u2013 Concept Clarification Series \u2014 All Submissions', 25, 13);
-  doc.setFont('helvetica', 'normal');
-  doc.setFontSize(9);
-  doc.text('Episode 1 Assessment', 25, 21);
-  doc.text(dateStr, PW - 10, 13, { align: 'right' });
-
-  doc.setFillColor(...C_NAVY);
-  doc.roundedRect(10, 30, PW - 20, 8, 2, 2, 'F');
-  doc.setFont('helvetica', 'bold');
-  doc.setFontSize(10);
-  doc.setTextColor(...C_WHITE);
-  doc.text('INDIVIDUAL RESULTS  -  ' + total + ' TOTAL SUBMISSIONS', 15, 36);
-
-  const sorted = [...allData].sort((a,b) => {
-    const pa = a.province||''; const pb = b.province||'';
-    return pa.localeCompare(pb) || (a.name||'').localeCompare(b.name||'');
-  });
-
+  const sorted = [...allData].sort((a,b) => (a.province||'').localeCompare(b.province||'') || (a.name||'').localeCompare(b.name||''));
   const tableRows = sorted.map(r => {
-    const d = r.taken_at ? new Date(r.taken_at).toLocaleDateString('en-ZA', {day:'2-digit',month:'short',year:'numeric'}) : '-';
-    return [ r.name||'-', r.email||'-', r.province||'-', (r.score||0)+'%', r.passed?'PASSED':'FAILED', String(r.attempt_number||1), d ];
+    const d = r.taken_at ? new Date(r.taken_at).toLocaleDateString('en-ZA',{day:'2-digit',month:'short',year:'numeric'}) : '-';
+    return [r.name||'-', r.email||'-', r.province||'-', (r.score||0)+'%', r.passed?'PASSED':'FAILED', String(r.attempt_number||1), d];
   });
 
   doc.autoTable({
-    startY: 41,
-    head: [['Name', 'Email', 'Province', 'Score', 'Status', 'Attempt #', 'Date']],
-    body: tableRows,
-    margin: { left: 10, right: 10 },
-    tableWidth: PW - 20,
-    styles: { font: 'helvetica', fontSize: 10, cellPadding: 3.5, textColor: C_NAVY, lineColor: [200, 230, 226], lineWidth: 0.3, overflow: 'ellipsize' },
-    headStyles: { fillColor: C_NAVY, textColor: C_WHITE, fontStyle: 'bold', fontSize: 10 },
-    alternateRowStyles: { fillColor: C_BGLIGHT },
-    bodyStyles: { fillColor: C_WHITE },
-    columnStyles: {
-      0: { fontStyle: 'bold', cellWidth: 42 },
-      1: { cellWidth: 60, fontSize: 8.5 },
-      2: { cellWidth: 36 },
-      3: { cellWidth: 18, halign: 'center', fontStyle: 'bold' },
-      4: { cellWidth: 22, halign: 'center', fontStyle: 'bold' },
-      5: { cellWidth: 20, halign: 'center' },
-      6: { cellWidth: 28 },
+    startY: 38, head:[['Name','Email','Province','Score','Status','Attempt #','Date']],
+    body: tableRows, margin:{ left:8, right:8 }, tableWidth: PW-16,
+    styles:{ font:'helvetica', fontSize:9.5, cellPadding:3.2, textColor:C_NAVY, lineColor:C_BORDER, lineWidth:0.3, overflow:'ellipsize' },
+    headStyles:{ fillColor:C_NAVY, textColor:C_WHITE, fontStyle:'bold', fontSize:9.5 },
+    alternateRowStyles:{ fillColor:C_BGLIGHT }, bodyStyles:{ fillColor:[255,255,255] },
+    columnStyles:{
+      0:{ fontStyle:'bold', cellWidth:42 }, 1:{ cellWidth:62, fontSize:8.5 },
+      2:{ cellWidth:34 },                   3:{ cellWidth:17, halign:'center', fontStyle:'bold' },
+      4:{ cellWidth:22, halign:'center', fontStyle:'bold' },
+      5:{ cellWidth:20, halign:'center' },  6:{ cellWidth:28 },
     },
-    didParseCell: (data) => {
-      if (data.section === 'body' && data.column.index === 4) {
-        data.cell.styles.textColor = data.cell.raw === 'PASSED' ? C_SUCCESS : C_DANGER;
-      }
-      if (data.section === 'body' && data.column.index === 3) {
-        const score = parseInt(data.cell.raw);
-        data.cell.styles.textColor = score >= 70 ? C_SUCCESS : C_DANGER;
-      }
-    }
+    didParseCell:(d) => {
+      if (d.section==='body' && d.column.index===4) d.cell.styles.textColor = d.cell.raw==='PASSED' ? C_SUCCESS : C_DANGER;
+      if (d.section==='body' && d.column.index===3) d.cell.styles.textColor = parseInt(d.cell.raw)>=70 ? C_SUCCESS : C_DANGER;
+    },
   });
 
-  doc.setFontSize(8);
-  doc.setTextColor(...C_MUTED);
-  doc.text('GEMS - Concept Clarification Series  |  Episode 1 Assessment  |  Page 2 of 2', PW/2, PH - 6, { align: 'center' });
+  doc.setFont('helvetica','normal'); doc.setFontSize(7); doc.setTextColor(...C_MUTED);
+  doc.text('Concept Clarification Series  |  Episode 1 Assessment  |  Page 3 of 3', PW/2, PH - 3, { align:'center' });
 
   doc.save(`GEMS_Summary_${new Date().toISOString().slice(0,10)}.pdf`);
   showToast('✅ PDF downloaded', 'success');
 }
 
-function showToast(msg, type='info') {
+/* ─── CSV export ─────────────────────────────────────────────────────────── */
+
+function exportCSV() {
+  if (!allData.length) { showToast('No data to export', 'error'); return; }
+  const headers = ['Name','Email','Province','Score','Passed','Attempt','Date'];
+  const rows    = allData.map(r => [
+    `"${r.name||''}"`,`"${r.email||''}"`,`"${r.province||''}"`,
+    r.score, r.passed?'Yes':'No', r.attempt_number||1,
+    r.taken_at ? new Date(r.taken_at).toLocaleDateString('en-ZA') : '',
+  ].join(','));
+  const csv  = [headers.join(','), ...rows].join('\n');
+  const blob = new Blob([csv], { type:'text/csv' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href = url; a.download = `GEMS_Results_${new Date().toISOString().slice(0,10)}.csv`; a.click();
+  URL.revokeObjectURL(url);
+  showToast('✅ CSV exported', 'success');
+}
+
+/* ─── toast ──────────────────────────────────────────────────────────────── */
+
+function showToast(msg, type = 'info') {
   const t = document.getElementById('toast');
   t.textContent = msg; t.className = 'toast show ' + type;
   setTimeout(() => t.classList.remove('show'), 3500);
@@ -1053,3 +1154,4 @@ window._quizQuestions = getQuestions();
 </script>
 </body>
 </html>
+
